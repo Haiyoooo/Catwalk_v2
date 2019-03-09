@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Job
+  - City
+  - Item
+  - fishCoin
+  - Company Manager
+  - Party
+  - Time Bar Handle
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - strong
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3559212699
+    locked: 0
+  - name: Job & Parties
+    uniqueID: 1910586061
+    locked: 0
+  - name: UI
+    uniqueID: 1228227225
+    locked: 0
+  - name: Closet Icon
+    uniqueID: 3903709829
+    locked: 0
+  - name: Shop Icon
+    uniqueID: 439054305
+    locked: 0
+  - name: UI Message
+    uniqueID: 3284674259
+    locked: 0
+  - name: gameOver Win
+    uniqueID: 2681146295
+    locked: 0
