@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ArrowScroll : MonoBehaviour
 {
-
     private bool mouseOver = false;
-    //[SerializeField] GameObject shopIcon;
-    [SerializeField] GameObject itemManager;
-    [SerializeField] bool isUp;
-    [SerializeField] bool inStore;
+    [SerializeField] GameObject shopIcon;
+    [SerializeField] bool isUp; // is it an up or down arrow, decided in the inspector of each arrow prefab
+    [SerializeField] bool inStore; // is it for the store of the closet, decided in the inspector of each arrow prefab
     [SerializeField] Transform shopAnchor;
     [SerializeField] Transform closetAnchor;
 
@@ -17,8 +15,7 @@ public class ArrowScroll : MonoBehaviour
     void Start()
     {
         // Find the objects that the arrows reference
-        //shopIcon = GameObject.Find("Shop Icon");
-        itemManager = GameObject.Find("Item Manager");
+        shopIcon = GameObject.Find("Shop Icon");
         if (inStore)
         {
             shopAnchor = transform.Find("StoreAnchor(Clone)");
@@ -44,11 +41,11 @@ public class ArrowScroll : MonoBehaviour
             {
                 if (isUp)
                 {
-                    itemManager.GetComponent<ItemManager>().storeIsUp = true;
+                    shopIcon.GetComponent<ItemManager>().storeIsUp = true;
                 }
                 else
                 {
-                    itemManager.GetComponent<ItemManager>().storeIsDown = true;
+                    shopIcon.GetComponent<ItemManager>().storeIsDown = true;
                 }
             }
 
@@ -57,70 +54,19 @@ public class ArrowScroll : MonoBehaviour
             {
                 if (isUp)
                 {
-                    itemManager.GetComponent<ItemManager>().closetIsUp = true;
+                    shopIcon.GetComponent<ItemManager>().closetIsUp = true;
                 }
                 else
                 {
-                    itemManager.GetComponent<ItemManager>().closetIsDown = true;
+                    shopIcon.GetComponent<ItemManager>().closetIsDown = true;
                 }
             }
 
 
         }
 
-
-        // disable when at the top or bottom
-        if (inStore)
-        {
-            if (isUp)
-            {
-                if (shopAnchor.transform.position.y < 5)
-                {
-                    GetComponent<SpriteRenderer>().enabled = false;
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                }
-            }
-            else
-            {
-                if (shopAnchor.transform.position.y > 13)
-                {
-                    GetComponent<SpriteRenderer>().enabled = false;
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                }
-            }
-        }
-        else
-        {
-            if (isUp)
-            {
-                if (closetAnchor.transform.position.y < 5)
-                {
-                    GetComponent<SpriteRenderer>().enabled = false;
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                }
-            }
-            else
-            {
-                if (closetAnchor.transform.position.y > 13)
-                {
-                    GetComponent<SpriteRenderer>().enabled = false;
-                }
-                else
-                {
-                    GetComponent<SpriteRenderer>().enabled = true;
-                }
-            }
-        }
-
+        // if it is visible, then you can press the arrow
+        GetComponent<BoxCollider2D>().enabled = GetComponent<SpriteRenderer>().enabled;
 
     }
 

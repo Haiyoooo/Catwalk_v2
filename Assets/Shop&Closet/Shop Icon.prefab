@@ -422,8 +422,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7688173126033494404}
   - component: {fileID: 7688173126033494403}
-  - component: {fileID: 7688173126033494402}
   - component: {fileID: 3060502135034445514}
+  - component: {fileID: 6514598201248845862}
   m_Layer: 0
   m_Name: Shop Icon
   m_TagString: Untagged
@@ -495,35 +495,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7688173126033494402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7688173126033494400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a96756d41f889248b0f34aec7ef21a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  opened: 0
-  itemsOn: 0
-  tempClosetIcon: {fileID: 6415534674455069433, guid: a09c175d062158347bb3d0560ed73dfb,
-    type: 3}
-  tempStoreWindow: {fileID: 3896263258610508701, guid: cbe26376f6d832942b9cc97bcb03a717,
-    type: 3}
-  tempClosetWindow: {fileID: 4753584496752056563, guid: 7fbd4a4796419d94daca5433ac2fea4a,
-    type: 3}
-  childObj: {fileID: 0}
-  tempStoreUp: {fileID: 9006847601494348112, guid: 8fde244d51ee06c4cbca196ccaf528e5,
-    type: 3}
-  tempStoreDown: {fileID: 2686556368195185249, guid: af05b4944ef4f264c8c1ccfc458a1718,
-    type: 3}
-  tempClosetUp: {fileID: 7620719526731280452, guid: 048e32d39e4c6b944b766903436ee3dc,
-    type: 3}
-  tempClosetDown: {fileID: 5192741825445951901, guid: 7a6adf19f70affd4a8712bc474edb916,
-    type: 3}
 --- !u!58 &3060502135034445514
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -537,6 +508,118 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.012254612, y: 0}
   serializedVersion: 2
-  m_Radius: 0.975
+  m_Radius: 1.1261402
+--- !u!114 &6514598201248845862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7688173126033494400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dab8689c3b6eb443ad814cf7677e96b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  opened: 0
+  itemsOn: 0
+  tempClosetIcon: {fileID: 6415534674455069433, guid: a09c175d062158347bb3d0560ed73dfb,
+    type: 3}
+  tempStoreWindow: {fileID: 3896263258610508701, guid: cbe26376f6d832942b9cc97bcb03a717,
+    type: 3}
+  tempClosetWindow: {fileID: 4753584496752056563, guid: 7fbd4a4796419d94daca5433ac2fea4a,
+    type: 3}
+  AllItemList:
+  - prefab: {fileID: 1611331771197106320, guid: f4e4a1f7b1e379e40bfb41fda3ec669e,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 4033900069754432056, guid: f39b034e87149c9488f2826213520efa,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3682973572151494147, guid: d2e80fd1bb4283546832bc1ae06f7a41,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 6864488741506774882, guid: 9a6ed6a2223e64d47918670f2513f744,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 6864488741506774882, guid: 7ce28c14164fa0149b6c4f21d3ccdbca,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 6864488741506774882, guid: f1398b94d1f298c4c8e49f956f43aedd,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3682973572151494147, guid: 83a775bdc62fb9b40bc46eb08e1b63e2,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3682973572151494147, guid: d12158482ae84124ca56e3c801d04f41,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3108468405728744859, guid: 2930c38db9492d8418193885d9668d6b,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3682973572151494147, guid: 8c3dd84ceac48e54c9467e59f1e854f5,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 6864488741506774882, guid: e6ff4b9a87d9781478347ad33e932856,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 8248576141903073064, guid: fecb912ca229a754c8f0570f7e8cb397,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 9168940605444515557, guid: a9d61e5736f2fc24f9ca5afae88e4354,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3682973572151494147, guid: 3504e8ee15f36fe418c6449cd372d702,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3164228135780793702, guid: 58aa68d35ed44104ca19dda5799719f0,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 2294048285233559061, guid: ddf3f47a62b031f4d989df52271b1e8c,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 8246279071158565061, guid: 0206331cbbfe0d745b1d9ad22a5f1a6b,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 5254537916315319614, guid: 372ca658e50344f4386b82a000e11106,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 9212804529888146654, guid: 92dc978167e0ee6459ea672fbc0f5af1,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 2294048285233559061, guid: af43163c4b759b54ba79a15d1bab8959,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 6394357372303730785, guid: 4cb251a0421ed8d44bd3c2e3ffff950d,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3480767431178001147, guid: 5ce2d0e1d769d7042a42e0db6d71ae1b,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 7299642610156703393, guid: b0f4eda9f411cae4085bc17681c66823,
+      type: 3}
+    cost: 2
+  - prefab: {fileID: 3682973572151494147, guid: df0ba5b19e56dc24ab2e50690d499634,
+      type: 3}
+    cost: 2
+  storeItems: []
+  closetItems: []
+  tempShopAnchor: {fileID: 7617015328939001642, guid: 3977a9ddc54969c47bdaddf88d746a2e,
+    type: 3}
+  tempClosetAnchor: {fileID: 7003924209639570445, guid: 2fa46cb707b465c449e29cf7497dc0f1,
+    type: 3}
+  tempStoreUp: {fileID: 9006847601494348112, guid: 8fde244d51ee06c4cbca196ccaf528e5,
+    type: 3}
+  tempStoreDown: {fileID: 2686556368195185249, guid: af05b4944ef4f264c8c1ccfc458a1718,
+    type: 3}
+  tempClosetUp: {fileID: 7620719526731280452, guid: 048e32d39e4c6b944b766903436ee3dc,
+    type: 3}
+  tempClosetDown: {fileID: 5192741825445951901, guid: 7a6adf19f70affd4a8712bc474edb916,
+    type: 3}
+  childObj: {fileID: 0}
+  storeIsUp: 0
+  storeIsDown: 0
+  closetIsUp: 0
+  closetIsDown: 0

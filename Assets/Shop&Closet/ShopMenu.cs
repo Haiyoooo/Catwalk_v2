@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShopMenu : MonoBehaviour
 {
+    // ALERT!
+    // This script is old and no longer needed, please remove all references to it
+    // IT WILL BE DELETED - all of this scripts functionality are now part of ItemManager
+
     private bool mouseOver = false;
     public bool opened = false;
     public bool itemsOn = false;
@@ -154,5 +158,5 @@ public class ShopMenu : MonoBehaviour
     {
         mouseOver = false;
     }
-
+    
 }

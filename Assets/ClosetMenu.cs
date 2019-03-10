@@ -15,14 +15,16 @@ public class ClosetMenu : MonoBehaviour
     
     void Update()
     {
-
+        // if you click on the closet icon once the inventory is opened
         if (mouseOver && Input.GetMouseButtonDown(0))
         {
-            shopIcon.GetComponent<ShopMenu>().opened = !shopIcon.GetComponent<ShopMenu>().opened;
-            shopIcon.GetComponent<ShopMenu>().childObj.gameObject.SetActive(shopIcon.GetComponent<ShopMenu>().opened);
+            // the inventory will close
+            shopIcon.GetComponent<ItemManager>().opened = !shopIcon.GetComponent<ItemManager>().opened;
+            // this turns off the gray rectangle behind the inventory UI
+            shopIcon.GetComponent<ItemManager>().childObj.gameObject.SetActive(shopIcon.GetComponent<ItemManager>().opened);
 
             //AUDIO
-            if (shopIcon.GetComponent<ShopMenu>().opened)
+            if (shopIcon.GetComponent<ItemManager>().opened)
             {
                 AudioManager.instance.open_shop.Play();
             }
