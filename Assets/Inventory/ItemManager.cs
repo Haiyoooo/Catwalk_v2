@@ -4,25 +4,56 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    [SerializeField] GameObject storeSpace;
-    [SerializeField] GameObject closetSpace;
+    [SerializeField] GameObject tempStoreSpace;
+    [SerializeField] GameObject tempClosetSpace;
     public ItemLog[] AllItemList = new ItemLog[3];
     [SerializeField] List<GameObject> storeItems = new List<GameObject>();
     [SerializeField] List<GameObject> closetItems = new List<GameObject>();
-    [SerializeField] GameObject shopManager;
-    [SerializeField] GameObject shopAnchor;
-    [SerializeField] GameObject closetAnchor;
+    [SerializeField] GameObject tempShopManager;
+    [SerializeField] GameObject tempShopAnchor;
+    [SerializeField] GameObject tempClosetAnchor;
 
-    public bool storeUp = false;
-    public bool storeDown = false;
-    public bool closetUp = false;
-    public bool closetDown = false;
+    [SerializeField] GameObject tempStoreUp;
+    [SerializeField] GameObject tempStoreDown;
+    [SerializeField] GameObject tempClosetUp;
+    [SerializeField] GameObject tempClosetDown;
+
+    public bool storeIsUp = false;
+    public bool storeIsDown = false;
+    public bool closetIsUp = false;
+    public bool closetIsDown = false;
 
     Vector3 shopAnchorSpot;
     Vector3 closetAnchorSpot;
 
+    // Game objects that will be spawned on start
+    GameObject storeSpace;
+    GameObject closetSpace;
+    GameObject shopManager;
+    GameObject shopAnchor;
+    GameObject closetAnchor;
+    GameObject storeUp;
+    GameObject storeDown;
+    GameObject closetUp;
+    GameObject closetDown;
+
+
     void Start()
     {
+        // Instantiate all the necesary prefabs for the inventory
+        //storeSpace = Instantiate(tempStoreSpace, transform.position, Quaternion.identity);
+        //closetSpace = Instantiate(tempClosetSpace, transform.position, Quaternion.identity);
+        shopManager = Instantiate(tempShopManager, transform.position, Quaternion.identity);
+        shopAnchor = Instantiate(tempShopAnchor, transform.position, Quaternion.identity);
+        closetAnchor = Instantiate(tempClosetAnchor, transform.position, Quaternion.identity);
+
+        storeUp = Instantiate(tempStoreUp, transform.position, Quaternion.identity);
+        storeDown = Instantiate(tempStoreDown, transform.position, Quaternion.identity);
+        closetUp = Instantiate(tempClosetUp, transform.position, Quaternion.identity);
+        closetDown = Instantiate(tempClosetDown, transform.position, Quaternion.identity);
+
+
+        // Assign the cost to each item
         foreach (ItemLog pair in AllItemList)
         {
             GameObject temp = Instantiate(pair.prefab, transform.position, Quaternion.identity);
@@ -133,23 +164,29 @@ public class ItemManager : MonoBehaviour
             //closetDown = false;
         }
 
-        // reset the arrow bools
+        // disable the arrows when at the top or bottom
+        storeUp.GetComponent<SpriteRenderer>().enabled = shopAnchor.transform.position.y < 5 ? false : true;
+        storeDown.GetComponent<SpriteRenderer>().enabled = shopAnchor.transform.position.y > 13 ? false : true;
+        closetUp.GetComponent<SpriteRenderer>().enabled = closetAnchor.transform.position.y < 5 ? false : true;
+        closetDown.GetComponent<SpriteRenderer>().enabled = closetAnchor.transform.position.y > 13 ? false : true;
         
-        if (storeUp)
+
+        // reset the arrow bools
+        if (storeIsUp)
         {
-            storeUp = false;
+            storeIsUp = false;
         }
-        if (storeDown)
+        if (storeIsDown)
         {
-            storeDown = false;
+            storeIsDown = false;
         }
-        if (closetUp)
+        if (closetIsUp)
         {
-            closetUp = false;
+            closetIsUp = false;
         }
-        if (closetDown)
+        if (closetIsDown)
         {
-            closetDown = false;
+            closetIsDown = false;
         }
 
 

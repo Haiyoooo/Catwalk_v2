@@ -9,7 +9,7 @@ public class ClosetMenu : MonoBehaviour
 
     void Start()
     {
-        
+        shopIcon = GameObject.Find("Shop Icon");
     }
 
     

@@ -6,7 +6,7 @@ public class ArrowScroll : MonoBehaviour
 {
 
     private bool mouseOver = false;
-    [SerializeField] GameObject shopIcon;
+    //[SerializeField] GameObject shopIcon;
     [SerializeField] GameObject itemManager;
     [SerializeField] bool isUp;
     [SerializeField] bool inStore;
@@ -16,6 +16,19 @@ public class ArrowScroll : MonoBehaviour
 
     void Start()
     {
+        // Find the objects that the arrows reference
+        //shopIcon = GameObject.Find("Shop Icon");
+        itemManager = GameObject.Find("Item Manager");
+        if (inStore)
+        {
+            shopAnchor = transform.Find("StoreAnchor(Clone)");
+        }
+        else
+        {
+            closetAnchor = transform.Find("ClosetAnchor(Clone)");
+        }
+
+        // make invisible until inventory is opened
         transform.localScale = Vector3.zero;
     }
 
@@ -31,11 +44,11 @@ public class ArrowScroll : MonoBehaviour
             {
                 if (isUp)
                 {
-                    itemManager.GetComponent<ItemManager>().storeUp = true;
+                    itemManager.GetComponent<ItemManager>().storeIsUp = true;
                 }
                 else
                 {
-                    itemManager.GetComponent<ItemManager>().storeDown = true;
+                    itemManager.GetComponent<ItemManager>().storeIsDown = true;
                 }
             }
 
@@ -44,11 +57,11 @@ public class ArrowScroll : MonoBehaviour
             {
                 if (isUp)
                 {
-                    itemManager.GetComponent<ItemManager>().closetUp = true;
+                    itemManager.GetComponent<ItemManager>().closetIsUp = true;
                 }
                 else
                 {
-                    itemManager.GetComponent<ItemManager>().closetDown = true;
+                    itemManager.GetComponent<ItemManager>().closetIsDown = true;
                 }
             }
 

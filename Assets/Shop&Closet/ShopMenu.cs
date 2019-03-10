@@ -7,21 +7,41 @@ public class ShopMenu : MonoBehaviour
     private bool mouseOver = false;
     public bool opened = false;
     public bool itemsOn = false;
-    [SerializeField] GameObject closetIcon;
-    [SerializeField] GameObject storeWindow;
-    [SerializeField] GameObject closetWindow;
+    [SerializeField] GameObject tempClosetIcon;
+    [SerializeField] GameObject tempStoreWindow;
+    [SerializeField] GameObject tempClosetWindow;
     public Transform childObj;
     private Vector3 windowScale;
     GameObject storeMask;
     GameObject closetMask;
 
-    [SerializeField] GameObject storeUp;
-    [SerializeField] GameObject storeDown;
-    [SerializeField] GameObject closetUp;
-    [SerializeField] GameObject closetDown;
+    [SerializeField] GameObject tempStoreUp;
+    [SerializeField] GameObject tempStoreDown;
+    [SerializeField] GameObject tempClosetUp;
+    [SerializeField] GameObject tempClosetDown;
+
+    // Game objects that will be spawned on start
+    GameObject closetIcon;
+    GameObject storeWindow;
+    GameObject closetWindow;
+    GameObject storeUp;
+    GameObject storeDown;
+    GameObject closetUp;
+    GameObject closetDown;
 
     void Start()
     {
+        // Instantiate all the necesary prefabs for the inventory
+        closetIcon = Instantiate(tempClosetIcon, transform.position, Quaternion.identity);
+        storeWindow = Instantiate(tempStoreWindow, transform.position, Quaternion.identity);
+        storeWindow.transform.localScale = Vector3.zero;
+        closetWindow = Instantiate(tempClosetWindow, transform.position, Quaternion.identity);
+        closetWindow.transform.localScale = Vector3.zero;
+        //storeUp = Instantiate(tempStoreUp, transform.position, Quaternion.identity);
+        //storeDown = Instantiate(tempStoreDown, transform.position, Quaternion.identity);
+        //closetUp = Instantiate(tempClosetUp, transform.position, Quaternion.identity);
+        //closetDown = Instantiate(tempClosetDown, transform.position, Quaternion.identity);
+
         // finds and disables the gray out rect
         childObj = transform.Find("Canvas");
         childObj.gameObject.SetActive(false);
@@ -62,7 +82,6 @@ public class ShopMenu : MonoBehaviour
             if (closetIcon.transform.position.x > 1) // if the closet icon gets far enough to the right
             {
                 // mask info
-                
                 Vector3 maskScale = new Vector3(1.4f, 1.7f, 1);
 
                 // store window opens
@@ -106,7 +125,7 @@ public class ShopMenu : MonoBehaviour
             // closet window closes
             closetWindow.transform.localScale = Vector3.Lerp(closetWindow.transform.localScale, Vector3.zero, 0.1f);
 
-            // arrows open
+            // arrows close
             storeUp.transform.position = Vector3.Lerp(storeUp.transform.position, transform.position, 0.2f);
             storeUp.transform.localScale = Vector3.Lerp(storeUp.transform.localScale, Vector3.zero, 0.2f);
 
