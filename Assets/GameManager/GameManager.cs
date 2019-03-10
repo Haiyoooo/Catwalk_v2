@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+
     public float day = 0;
     public float countDown = 7;
     public Slider timeBar;
@@ -15,25 +16,25 @@ public class GameManager : MonoBehaviour
     public int[] dayNumber;
     public int lastWeek = 4;
     public int currentWeek = 1;
+    public bool backWhite = false;
     private float dayIndex = 1;
+    private Timebar_Animation timebar_Animation;
 
     public int fishCoin = 10;
-    public int debt = 20;
-    public int[] debtList;
+    //public int debt = 20;
+    //public int[] debtList;
     private bool isPaied = false;
 
     public GameObject cashText;
     //public GameObject debtText;
-    private Text fameStatusText;
+    //private Text fameStatusText;
     public GameObject endWeek;
     public GameObject endWeekText;
     public GameObject nextweekButton;
     public GameObject quitButton;
     [SerializeField] private GameObject gameover;
     [SerializeField] private GameObject gamewin;
-    private Timebar_Animation timebar_Animation;
-    public bool backWhite = false;
-
+    
     private void Awake()
     {
         if (instance == null)
@@ -42,8 +43,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
 
         //fameStatusText = GameObject.Find("Fame Status").GetComponent<Text>();
-
-        debt = debtList[0];
+        //debt = debtList[0];
     }
 
     private void Update()
@@ -56,7 +56,6 @@ public class GameManager : MonoBehaviour
             isPaied = false;
             //timebar_Animation.GetComponent<Timebar_Animation>().ResetDayMarkerColor();
             //if(day > 1)
-                
         }
     }
 
@@ -87,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         if (day % countDown == 0 && day > 1 && !isPaied)
         {
-            fishCoin -= debt;
+            //fishCoin -= debt;
             isPaied = true;
             UpdateDayNumbers();
 
@@ -105,7 +104,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 if (currentWeek == lastWeek)
-                { //WON
+                { //Won the game
                     endWeekText.GetComponent<TextMeshProUGUI>().text = "YOU WON! Debt free & famous!!!";
                     quitButton.SetActive(true);
                     nextweekButton.SetActive(false);
@@ -117,22 +116,22 @@ public class GameManager : MonoBehaviour
                     //SceneManager.LoadScene(3);
                 }
 
-                else //NEXTWEEK
+                else //Go to next week
 
                 {
-                    endWeekText.GetComponent<TextMeshProUGUI>().text = "Yay, you paid your " + debt + " FishCoin debt on time!";
+                    //endWeekText.GetComponent<TextMeshProUGUI>().text = "Yay, you paid your " + debt + " FishCoin debt on time!";
                     quitButton.SetActive(false);
                     nextweekButton.SetActive(true);
                 } 
             }
             endWeek.SetActive(true);
 
-            debt = debtList[currentWeek];
+            //debt = debtList[currentWeek];
             currentWeek++;
         }
     }
 
-    private void UpdateDayNumbers()
+    private void UpdateDayNumbers() //Display the index of each day and update when move to next week
     {
         for(int i = 0; i < dayNumberText.Length; i++)
         {

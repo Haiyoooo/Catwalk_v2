@@ -120,7 +120,7 @@ public class EventBehavior : MonoBehaviour
 
     private void Update()
     {
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = !FindObjectOfType<ShopMenu>().opened;
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = !FindObjectOfType<ItemManager>().opened;
 
         if (playStanderd)
         {
