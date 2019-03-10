@@ -11,7 +11,6 @@ public class Timebar_Animation : MonoBehaviour
     private Image image;
     [SerializeField] private RectTransform deadlineCatRect; //deadline cat icon
 
-    // Start is called before the first frame update
     void Start()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
@@ -21,30 +20,25 @@ public class Timebar_Animation : MonoBehaviour
 
     private void Update()
     {
-        ResetDayMarkerColor();
+        if (GameManager.instance.day % GameManager.instance.countDown == 1) //change the last day box back to white when new week starts
+            if (gameObject.name == "Deadline")
+                image.sprite = noFill;
     }
 
     //fill colour when Arrow handle (current day) hits the Day Marker box
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Time Bar Handle") //the arrow indicator, object name 'handle'
+        if (other.gameObject.tag == "Time Bar Handle" && !GameManager.instance.backWhite) //the arrow indicator, object name 'handle'
         {
-            image.sprite = fill;
+            image.sprite = fill; //day box changes color
+        }
+        if (other.gameObject.tag == "Time Bar Handle" && GameManager.instance.backWhite) //all the day boxes except the first one change back to white at the first day of each week
+        {
+            image.sprite = noFill; 
+            GameManager.instance.backWhite = false;
         }
 
         //deadlineCatWriggle();
-    }
-
-    //reset all to no fill
-    private void ResetDayMarkerColor()
-    {
-        if (GameManager.instance.backWhite)
-        {
-            image.sprite = noFill;
-            GameManager.instance.backWhite = false;
-            Debug.Log("backwhite");
-        }
-           
     }
 
     //public void deadlineCatWriggle()

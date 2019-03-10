@@ -751,7 +751,6 @@ GameObject:
   - component: {fileID: 5881061399765938606}
   - component: {fileID: 1561781106186363960}
   - component: {fileID: 626523269713673953}
-  - component: {fileID: 8870773058278313534}
   m_Layer: 5
   m_Name: Day1
   m_TagString: Untagged
@@ -863,21 +862,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &8870773058278313534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881061399765938600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
 --- !u!1 &5881061399803812105
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public bool backWhite = false;
     private float dayIndex = 1;
     private Timebar_Animation timebar_Animation;
+    private bool dayNumUpdated = false;
 
     public int fishCoin = 10;
     //public int debt = 20;
@@ -51,12 +52,12 @@ public class GameManager : MonoBehaviour
         TimebarValue();
         DisplayCashDebt();
         PayOnDeadline();
-        if (day % countDown == 1)
+        if (day % countDown == 1 && !dayNumUpdated && day != 1)
         {
+            UpdateDayNumbers();
             isPaied = false;
-            //timebar_Animation.GetComponent<Timebar_Animation>().ResetDayMarkerColor();
-            //if(day > 1)
-        }
+            dayNumUpdated = true;
+        }  
     }
 
     private void TimebarValue()
@@ -64,14 +65,17 @@ public class GameManager : MonoBehaviour
         dayIndex = day % countDown - 1;
         float goalValue = dayIndex * (1 / (countDown - 1));
 
+        //Timebar day marks animation
         if (day % countDown == 0)
-            timeBar.value = 1;
+        {
+            timeBar.value = Mathf.Lerp(timeBar.value, 1, 0.02f);
+        } 
         else
         {
             timeBar.value = Mathf.Lerp(timeBar.value, goalValue, 0.02f);
-            backWhite = true;
+            if (day % countDown == 1)
+                backWhite = true;
         }
-            
     }
 
     private void DisplayCashDebt()
@@ -88,7 +92,6 @@ public class GameManager : MonoBehaviour
         {
             //fishCoin -= debt;
             isPaied = true;
-            UpdateDayNumbers();
 
             if (fishCoin <= 0)
             {//GAME OVER
