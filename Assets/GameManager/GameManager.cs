@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             UpdateDayNumbers();
             isPaied = false;
             dayNumUpdated = true;
-        }  
+        }
     }
 
     private void TimebarValue()
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
         {
             //fishCoin -= debt;
             isPaied = true;
+            dayNumUpdated = false;
 
             if (fishCoin <= 0)
             {//GAME OVER
