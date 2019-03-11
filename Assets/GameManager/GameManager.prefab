@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fc7510358e7f57448f9d57c81f0c092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  day: 0
+  day: 1
   countDown: 7
   timeBar: {fileID: 0}
   dayNumberText:
@@ -57,12 +57,14 @@ MonoBehaviour:
   dayNumber: 01000000020000000300000004000000050000000600000007000000
   lastWeek: 4
   currentWeek: 1
+  backWhite: 0
   fishCoin: 10
   debt: 20
-  debtList: 1400000064000000fa00000090010000
-  cashText: {fileID: 3333697950924981499, guid: 77e4ee670c909ed4588cd070247e8aa1,
-    type: 3}
-  endWeek: {fileID: 0}
+  debtList: 140000002800000064000000fa000000
+  cashText: {fileID: 0}
+  endWeekPrefab: {fileID: 0}
   endWeekText: {fileID: 0}
   nextweekButton: {fileID: 0}
   quitButton: {fileID: 0}
+  gameover: {fileID: 0}
+  gamewin: {fileID: 0}

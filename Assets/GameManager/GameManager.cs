@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject cashText;
     //public GameObject debtText;
     //private Text fameStatusText;
-    public GameObject endWeek;
+    public GameObject endWeekPrefab;
     public GameObject endWeekText;
     public GameObject nextweekButton;
     public GameObject quitButton;
@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
 
         //fameStatusText = GameObject.Find("Fame Status").GetComponent<Text>();
         debt = debtList[0];
+
+        //hide the endWeek pop-up window
+        endWeekPrefab.SetActive(false);
     }
 
     private void Update()
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
             //fishCoin -= debt;
             isPaid = true;
             dayNumUpdated = false;
+            endWeekPrefab.SetActive(true);
 
             if (fishCoin <= 0)
             {//GAME OVER
@@ -131,7 +135,7 @@ public class GameManager : MonoBehaviour
                 gameover.SetActive(false);
                 gamewin.SetActive(true);
             }
-            endWeek.SetActive(true);
+            
             print("end week popup");
 
             debt = debtList[currentWeek];

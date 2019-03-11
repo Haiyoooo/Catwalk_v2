@@ -14,12 +14,6 @@ public class EndWeek : MonoBehaviour
 
     [SerializeField] private GameObject endWeekPrefab;
 
-    private void Start()
-    {
-        //Hide the EndWeek message
-        endWeekPrefab.SetActive(false);
-    }
-
     public void QuitGame()
     {
         Application.Quit();
