@@ -1,11 +1,24 @@
-﻿using System.Collections;
+﻿/* Handles button presses for the pop-up message which appears at the end of each week.
+ * 
+ * Attached to: 'NextWeekButton' gameobject which is a child object of 'EndWeek' prefab.
+ * 
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndWeek : MonoBehaviour
 {
-    public GameObject panel;
+
+    [SerializeField] private GameObject endWeekPrefab;
+
+    private void Start()
+    {
+        //Hide the EndWeek message
+        endWeekPrefab.SetActive(false);
+    }
 
     public void QuitGame()
     {
@@ -15,7 +28,7 @@ public class EndWeek : MonoBehaviour
 
     public void NextWeek()
     {
-        panel.SetActive(false);
+        endWeekPrefab.SetActive(false);
     }
 
     public void StartGame()
@@ -23,3 +36,5 @@ public class EndWeek : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 }
+
+
