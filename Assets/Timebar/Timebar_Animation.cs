@@ -20,6 +20,11 @@ public class Timebar_Animation : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.instance.backWhite) //all the day boxes except the first one change back to white at the first day of each week
+        {
+            image.sprite = noFill;
+            GameManager.instance.backWhite = false;
+        }
         if (GameManager.instance.day % GameManager.instance.countDown == 1) //change the last day box back to white when new week starts
             if (gameObject.name == "Deadline")
                 image.sprite = noFill;
@@ -32,11 +37,7 @@ public class Timebar_Animation : MonoBehaviour
         {
             image.sprite = fill; //day box changes color
         }
-        if (other.gameObject.tag == "Time Bar Handle" && GameManager.instance.backWhite) //all the day boxes except the first one change back to white at the first day of each week
-        {
-            image.sprite = noFill; 
-            GameManager.instance.backWhite = false;
-        }
+        
 
         //deadlineCatWriggle();
     }
