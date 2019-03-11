@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float countDown;
     public int lastWeek;
     public int currentWeek;
+    private bool weekNumUpdated;
 
     public int fishCoin;
     public int debt;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
         fishCoin = 10;
         debt = 20;
         isPaid = false;
+        weekNumUpdated = false;
 
         //fameStatusText = GameObject.Find("Fame Status").GetComponent<Text>();
         debt = debtList[0];
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         DisplayCashDebt();
         PayOnDeadline();
+        UpdateWeekNum();
     }
 
     private void DisplayCashDebt()
@@ -108,7 +111,17 @@ public class GameManager : MonoBehaviour
             print("end week popup");
 
             debt = debtList[currentWeek];
-            currentWeek++;
         }
+    }
+
+    private void UpdateWeekNum()
+    {
+        if (day > 1 && day % countDown == 1 && !weekNumUpdated)
+        {
+            currentWeek++;
+            weekNumUpdated = true;
+        }
+        if (day % countDown == 0)
+            weekNumUpdated = false;
     }
 }

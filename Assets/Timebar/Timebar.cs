@@ -66,7 +66,10 @@ public class Timebar : MonoBehaviour
         //Timebar day marks animation
         //If it is the last day of the week....
         if (dayIndex == -1)
+        {
             barSlider.value = Mathf.Lerp(barSlider.value, 1, 0.02f);
+            dayNumUpdated = false;
+        }
         else
         {
             //If it is the first day of the week...
