@@ -314,7 +314,7 @@ public class ItemManager : MonoBehaviour
     // When used above, it disables interaction with the scrolling arrows when at the bottom of each menu
     private bool tooLow(GameObject anchor, List<GameObject> contents)
     {
-        if (anchor.transform.position.y > 13 - 2 * ((AllItemList.Length / 3) - (contents.Count / 3)))
+        if ( anchor.transform.position.y > 13 - 2 * ( ((AllItemList.Length+2) / 3) - ((contents.Count+2) / 3) ) )
         {
             return true;
         }
