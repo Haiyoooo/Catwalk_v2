@@ -79,12 +79,12 @@ public class ItemBehavoir : MonoBehaviour
             if (wornOn == putOn.head) // head
             {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headItem = null;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headStyle = CompanyManager.trend.None;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headStyle = CompanyManager.trend.BirthdaySuit;
             }
             else if (wornOn == putOn.body) // body
             {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyItem = null;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyStyle = CompanyManager.trend.None;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyStyle = CompanyManager.trend.BirthdaySuit;
             }
         }
 
