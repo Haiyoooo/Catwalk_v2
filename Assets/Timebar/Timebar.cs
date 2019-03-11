@@ -18,7 +18,6 @@ public class Timebar : MonoBehaviour
     private int[] dayNumber; //e.p. the first Monday is 1
     private float dayIndex;  //e.p. Monday is 0, Tuesday is 1
     private float goalValue;
-    //private Timebar_Animation timebar_Animation;
     private bool dayNumUpdated;
     private bool backWhite;
     private RectTransform[] rectTransform;
@@ -65,18 +64,18 @@ public class Timebar : MonoBehaviour
     private void TimebarValue()
     {
         //Timebar day marks animation
-        //if it is the last day of the week....
+        //If it is the last day of the week....
         if (dayIndex == -1)
             barSlider.value = Mathf.Lerp(barSlider.value, 1, 0.02f);
         else
         {
-            //if it is the first day of the week...
+            //If it is the first day of the week...
             if (dayIndex == 0)
             {
                 backWhite = true;
                 barSlider.value = 0;
             }
-            else //if it is day 2 - day 6...
+            else //If it is day 2 - day 6...
                 barSlider.value = Mathf.Lerp(barSlider.value, goalValue, 0.02f);
         }
     }
@@ -93,23 +92,27 @@ public class Timebar : MonoBehaviour
 
     private void ChangeColor()
     {
-        if (backWhite) //all the day boxes except the first one change back to white at the first day of each week
+        if (backWhite) //Day 2 - Day 7 change back to white at the first day of each week
         {
             for (int i = 1; i < image.Length; i++)
                 image[i].sprite = noFill;
             backWhite = false;
         }
-
-        //if (dayIndex == 0) //change the 7th day box back to white when new week starts
-        //image[6].sprite = noFill;
-        
-        //Change that day's box to yellow except the 7th day
         if (barSlider.value >= goalValue - 0.05)
         {
-            if (dayIndex != -1)
+            if (dayIndex != -1) //Day 1 - Day 6
+            {
                 image[(int)dayIndex].sprite = fill;
-            else
+                //Incase you move to next day too quick, the current day hasn't change to yellow yet
+                if (dayIndex >= 2 && dayIndex <= 5 && image[(int)dayIndex - 1].sprite == noFill)
+                    image[(int)dayIndex - 1].sprite = fill;
+            }
+            else //Day 7
+            {
                 image[6].sprite = fill;
+                if (image[5].sprite == noFill)
+                    image[5].sprite = fill;
+            }   
         } 
     }
 }
