@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public int fishCoin = 10;
     public int debt = 20;
     public int[] debtList;
-    private bool isPaied = false;
+    private bool isPaid = false;
 
     public GameObject cashText;
     //public GameObject debtText;
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         if (day % countDown == 1 && !dayNumUpdated && day != 1)
         {
             UpdateDayNumbers();
-            isPaied = false;
+            isPaid = false;
             dayNumUpdated = true;
         }
     }
@@ -93,10 +93,10 @@ public class GameManager : MonoBehaviour
 
     private void PayOnDeadline()
     {
-        if (day % countDown == 0 && day > 1 && !isPaied)
+        if (day % countDown == 0 && day > 1 && !isPaid)
         {
             //fishCoin -= debt;
-            isPaied = true;
+            isPaid = true;
             dayNumUpdated = false;
 
             if (fishCoin <= 0)
@@ -117,23 +117,22 @@ public class GameManager : MonoBehaviour
                     endWeekText.GetComponent<TextMeshProUGUI>().text = "YOU WON! Debt free & famous!!!";
                     quitButton.SetActive(true);
                     nextweekButton.SetActive(false);
-
-                    //imgs
-                    gameover.SetActive(false);
-                    gamewin.SetActive(true);
-
                     //SceneManager.LoadScene(3);
                 }
 
                 else //Go to next week
-
                 {
                     endWeekText.GetComponent<TextMeshProUGUI>().text = "Yay, you paid your " + debt + " FishCoin debt on time!";
                     quitButton.SetActive(false);
                     nextweekButton.SetActive(true);
-                } 
+                }
+
+                //imgs
+                gameover.SetActive(false);
+                gamewin.SetActive(true);
             }
             endWeek.SetActive(true);
+            print("end week popup");
 
             debt = debtList[currentWeek];
             currentWeek++;
