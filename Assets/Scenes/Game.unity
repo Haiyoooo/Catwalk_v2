@@ -4979,6 +4979,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 834445241352930398, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5,
         type: 3}
+      propertyPath: debtList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 834445241352930398, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5,
+        type: 3}
       propertyPath: timeBar
       value: 
       objectReference: {fileID: 852659194}
@@ -5062,6 +5067,26 @@ PrefabInstance:
       propertyPath: gamewin
       value: 
       objectReference: {fileID: 256760784}
+    - target: {fileID: 834445241352930398, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5,
+        type: 3}
+      propertyPath: debtList.Array.data[0]
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 834445241352930398, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5,
+        type: 3}
+      propertyPath: debtList.Array.data[1]
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 834445241352930398, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5,
+        type: 3}
+      propertyPath: debtList.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 834445241352930398, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5,
+        type: 3}
+      propertyPath: debtList.Array.data[3]
+      value: 250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4c9672a76d84294aa4e1bf4d4e9f9f5, type: 3}
 --- !u!224 &7997212644434372379 stripped

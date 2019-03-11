@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     private bool dayNumUpdated = false;
 
     public int fishCoin = 10;
-    //public int debt = 20;
-    //public int[] debtList;
+    public int debt = 20;
+    public int[] debtList;
     private bool isPaied = false;
 
     public GameObject cashText;
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
 
         //fameStatusText = GameObject.Find("Fame Status").GetComponent<Text>();
-        //debt = debtList[0];
+        debt = debtList[0];
     }
 
     private void Update()
@@ -66,23 +66,28 @@ public class GameManager : MonoBehaviour
         float goalValue = dayIndex * (1 / (countDown - 1));
 
         //Timebar day marks animation
+        //if it is the last day of the week....
         if (day % countDown == 0)
         {
             timeBar.value = Mathf.Lerp(timeBar.value, 1, 0.02f);
         } 
         else
         {
-            timeBar.value = Mathf.Lerp(timeBar.value, goalValue, 0.02f);
+            //if it is the first day of the week...
             if (day % countDown == 1)
+            {
                 backWhite = true;
+                timeBar.value = 0;
+            }
+            else //if it is day 2 - day 6...
+                timeBar.value = Mathf.Lerp(timeBar.value, goalValue, 0.02f);
         }
     }
 
     private void DisplayCashDebt()
     {
         Debug.Log(cashText);
-       //debtText.GetComponent<Text>().text = "owe: " + debt;
-
+        //debtText.GetComponent<Text>().text = "owe: " + debt;
         cashText.GetComponent<Text>().text = "" + fishCoin;
     }
 
@@ -123,18 +128,19 @@ public class GameManager : MonoBehaviour
                 else //Go to next week
 
                 {
-                    //endWeekText.GetComponent<TextMeshProUGUI>().text = "Yay, you paid your " + debt + " FishCoin debt on time!";
+                    endWeekText.GetComponent<TextMeshProUGUI>().text = "Yay, you paid your " + debt + " FishCoin debt on time!";
                     quitButton.SetActive(false);
                     nextweekButton.SetActive(true);
                 } 
             }
             endWeek.SetActive(true);
 
-            //debt = debtList[currentWeek];
+            debt = debtList[currentWeek];
             currentWeek++;
         }
     }
 
+    //Display only
     private void UpdateDayNumbers() //Display the index of each day and update when move to next week
     {
         for(int i = 0; i < dayNumberText.Length; i++)
