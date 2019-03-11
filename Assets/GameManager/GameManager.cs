@@ -9,22 +9,15 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public float day = 0;
-    public float countDown = 7;
-    public Slider timeBar;
-    public GameObject[] dayNumberText;
-    public int[] dayNumber;
-    public int lastWeek = 4;
-    public int currentWeek = 1;
-    public bool backWhite = false;
-    private float dayIndex = 1;
-    private Timebar_Animation timebar_Animation;
-    private bool dayNumUpdated = false;
+    public float day;
+    public float countDown;
+    public int lastWeek;
+    public int currentWeek;
 
-    public int fishCoin = 10;
-    public int debt = 20;
+    public int fishCoin;
+    public int debt;
     public int[] debtList;
-    private bool isPaid = false;
+    private bool isPaid;
 
     public GameObject cashText;
     //public GameObject debtText;
@@ -43,6 +36,14 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(this.gameObject);
 
+        day = 1;
+        countDown = 7;
+        lastWeek = 4;
+        currentWeek = 1;
+        fishCoin = 10;
+        debt = 20;
+        isPaid = false;
+
         //fameStatusText = GameObject.Find("Fame Status").GetComponent<Text>();
         debt = debtList[0];
 
@@ -52,39 +53,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        TimebarValue();
         DisplayCashDebt();
         PayOnDeadline();
-        if (day % countDown == 1 && !dayNumUpdated && day != 1)
-        {
-            UpdateDayNumbers();
-            isPaid = false;
-            dayNumUpdated = true;
-        }
-    }
-
-    private void TimebarValue()
-    {
-        dayIndex = day % countDown - 1;
-        float goalValue = dayIndex * (1 / (countDown - 1));
-
-        //Timebar day marks animation
-        //if it is the last day of the week....
-        if (day % countDown == 0)
-        {
-            timeBar.value = Mathf.Lerp(timeBar.value, 1, 0.02f);
-        } 
-        else
-        {
-            //if it is the first day of the week...
-            if (day % countDown == 1)
-            {
-                backWhite = true;
-                timeBar.value = 0;
-            }
-            else //if it is day 2 - day 6...
-                timeBar.value = Mathf.Lerp(timeBar.value, goalValue, 0.02f);
-        }
     }
 
     private void DisplayCashDebt()
@@ -100,7 +70,6 @@ public class GameManager : MonoBehaviour
         {
             //fishCoin -= debt;
             isPaid = true;
-            dayNumUpdated = false;
             endWeekPrefab.SetActive(true);
 
             if (fishCoin <= 0)
@@ -140,16 +109,6 @@ public class GameManager : MonoBehaviour
 
             debt = debtList[currentWeek];
             currentWeek++;
-        }
-    }
-
-    //Display only
-    private void UpdateDayNumbers() //Display the index of each day and update when move to next week
-    {
-        for(int i = 0; i < dayNumberText.Length; i++)
-        {
-            dayNumber[i] += 7;
-            dayNumberText[i].GetComponent<TextMeshProUGUI>().text = "Day " + dayNumber[i];
         }
     }
 }

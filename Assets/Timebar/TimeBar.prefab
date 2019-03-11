@@ -171,7 +171,6 @@ GameObject:
   - component: {fileID: 973969883512137567}
   - component: {fileID: 8849609757219339988}
   - component: {fileID: 8506061089327679307}
-  - component: {fileID: 8489178455245388450}
   m_Layer: 5
   m_Name: Day5
   m_TagString: Untagged
@@ -196,7 +195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 0.9}
+  m_AnchoredPosition: {x: 26.9, y: 0.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2123555679338595
@@ -283,21 +282,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &8489178455245388450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5427534059626265755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
 --- !u!1 &5881061399585071840
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,9 +455,8 @@ GameObject:
   - component: {fileID: 5881061399722599641}
   - component: {fileID: 275834240552205943}
   - component: {fileID: 7039664607618578059}
-  - component: {fileID: 4788595070508559070}
   m_Layer: 5
-  m_Name: Deadline
+  m_Name: Day7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 87.2, y: 0.89999}
+  m_AnchoredPosition: {x: 81.1, y: 0.89999}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881061399722599646
@@ -583,21 +566,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &4788595070508559070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881061399722599643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
 --- !u!1 &5881061399765840944
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +579,6 @@ GameObject:
   - component: {fileID: 5881061399765840950}
   - component: {fileID: 8929870584359094464}
   - component: {fileID: 4155317104434324309}
-  - component: {fileID: 3906716092756485800}
   m_Layer: 5
   m_Name: Day2
   m_TagString: Untagged
@@ -636,7 +603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -53.6, y: 0.000041246}
+  m_AnchoredPosition: {x: -54.4, y: 0.000041246}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881061399765840951
@@ -723,21 +690,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &3906716092756485800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881061399765840944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
 --- !u!1 &5881061399765938600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1221,6 @@ GameObject:
   - component: {fileID: 5881061400155774102}
   - component: {fileID: 1679677831325883043}
   - component: {fileID: 289028122428983388}
-  - component: {fileID: 5926572458980013831}
   m_Layer: 5
   m_Name: Day3
   m_TagString: Untagged
@@ -1294,7 +1245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.5, y: 0.000041246}
+  m_AnchoredPosition: {x: -27.7, y: 0.000041246}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881061400155774103
@@ -1381,21 +1332,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &5926572458980013831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881061400155774096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
 --- !u!1 &5881061400516855956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1344,7 @@ GameObject:
   - component: {fileID: 5881061400516855963}
   - component: {fileID: 5881061400516855962}
   m_Layer: 5
-  m_Name: TextMeshPro Text
+  m_Name: Day7Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1590,8 +1526,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -6.8, y: 1.5}
-  m_SizeDelta: {x: 0.01, y: 13.97}
+  m_AnchoredPosition: {x: -9.26, y: 1.5}
+  m_SizeDelta: {x: -4.91, y: 13.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881061400620127849
 CanvasRenderer:
@@ -1803,7 +1739,6 @@ GameObject:
   - component: {fileID: 5881061400991386106}
   - component: {fileID: 582185830263813671}
   - component: {fileID: 3137684930242782974}
-  - component: {fileID: 4948194246605378152}
   m_Layer: 5
   m_Name: Day4
   m_TagString: Untagged
@@ -1828,7 +1763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.2, y: 0.000041246}
+  m_AnchoredPosition: {x: -0.2, y: 0.000041246}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5881061400991386107
@@ -1915,21 +1850,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &4948194246605378152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5881061400991386100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
 --- !u!1 &5881061401034424296
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,6 +1860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5881061401034424297}
   - component: {fileID: 5881061401034424302}
+  - component: {fileID: 2088918316091341348}
   m_Layer: 5
   m_Name: TimeBar
   m_TagString: Untagged
@@ -2023,6 +1944,30 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2088918316091341348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5881061401034424296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc3b25d1d37f48499a9bc01cc61ee58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayBox:
+  - {fileID: 5881061399765938600}
+  - {fileID: 5881061399765840944}
+  - {fileID: 5881061400155774096}
+  - {fileID: 5881061400991386100}
+  - {fileID: 5427534059626265755}
+  - {fileID: 8787416163046939357}
+  - {fileID: 5881061399722599643}
+  barSlider: {fileID: 5881061401034424302}
+  noFill: {fileID: 21300000, guid: 773fdd01c04ff7a4c86a12db3cb99674, type: 3}
+  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
+  deadlineCatRect: {fileID: 2526749277364844567}
 --- !u!1 &5881061401071297238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,7 +2002,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: -2.5002, y: 0}
-  m_SizeDelta: {x: -15, y: 0}
+  m_SizeDelta: {x: -14.999, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5881061401081878161
 GameObject:
@@ -2836,7 +2781,6 @@ GameObject:
   - component: {fileID: 4518493334839818462}
   - component: {fileID: 8208435375944854191}
   - component: {fileID: 1297631793878096341}
-  - component: {fileID: 5430343570555184997}
   m_Layer: 5
   m_Name: Day6
   m_TagString: Untagged
@@ -2861,7 +2805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 57.7, y: 0.89996}
+  m_AnchoredPosition: {x: 54.1, y: 0.89996}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4414570725422937960
@@ -2948,18 +2892,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 100.69246, y: 100.257416}
   m_EdgeRadius: 0
---- !u!114 &5430343570555184997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8787416163046939357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2ab07a366ccef47b4bfffe0df66a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noFill: {fileID: 21300000, guid: 0e386dd016c38864dbf6eb4f6c46bec7, type: 3}
-  fill: {fileID: 21300000, guid: b3c7bb77f9aeead469129a982e4a979e, type: 3}
-  deadlineCatRect: {fileID: 0}
