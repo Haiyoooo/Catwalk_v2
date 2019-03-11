@@ -149,11 +149,7 @@ MonoBehaviour:
   ssBonusMultiplier: 1.5
   jobSprite: {fileID: 21300000, guid: 5d651c78b72c2e94a9dd15989e9b2aaa, type: 3}
   partySprite: {fileID: 21300000, guid: 0fd2b1a246d5b9743aff7c85392cabdb, type: 3}
-  successPopUp: {fileID: 1298474162068425067, guid: 383ceb9d5829fe04fa9f393660e9711c,
-    type: 3}
-  superSuccessPopUp: {fileID: 8067101070582754992, guid: 7fefdb9a0e6e2974b8136efcd6c11268,
-    type: 3}
-  failPopUp: {fileID: 240324955938900470, guid: 959e96668534d1d4ca4bc631724c8aba,
+  popUpPrefab: {fileID: 2921607875492967959, guid: b8e7ebaccf80ad443abbeaa4bf717fbd,
     type: 3}
   fireworksFX: {fileID: 0}
   nameTooltip: {fileID: 716384055182899069}

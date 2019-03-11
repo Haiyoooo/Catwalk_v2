@@ -36,28 +36,18 @@ public class PopUp_Messages : MonoBehaviour
 
     private void Start()
     {
-       
         parent = transform.parent.GetComponent<EventBehavior>();
-
         companyManager = GameObject.FindObjectOfType<CompanyManager>(); 
 
         tempMessage = Random.Range(0, 3);
-
         msgText = gameObject.transform.GetChild(4).GetComponent<Text>();
-
         goldText = gameObject.transform.GetChild(3).GetComponent<Text>();
-
         goldFishCoin = gameObject.transform.GetChild(3).GetChild(0).GetComponent<Image>();
 
         numberOfCompanies = companyManager.CompanyList.Length;
-
         var tempRandom = Random.Range(0, numberOfCompanies);
-
         companyName = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[tempRandom].name;
-
-
         var tempWant = Random.Range(0, 2);
-
         style = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[tempRandom].itWants[tempWant].ToString();   //0 1 style randomizer   /why zac why
 
     }

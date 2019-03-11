@@ -28,9 +28,7 @@ public class EventBehavior : MonoBehaviour
     private SpriteRenderer eventSpriteRenderer;
 
     [Header("PopUp Messages")]
-    [SerializeField] private GameObject successPopUp;
-    [SerializeField] private GameObject superSuccessPopUp;
-    [SerializeField] private GameObject failPopUp; //reference the pop-up messages
+    [SerializeField] private GameObject popUpPrefab;
 
     [Header("Disappear Animation")]
     [SerializeField] private GameObject fireworksFX;
@@ -44,14 +42,14 @@ public class EventBehavior : MonoBehaviour
     [SerializeField] private string eventName;
 
 
-    private Transform childObj;
+    private Transform tooltip;
     private CompanyManager.trend theme;
     private string themeString;
 
     // Animation Stuff
-    private Vector3 InitialScale;
-    private Vector3 FinalScale;
-    private Vector3 BigScale;
+    private Vector3 InitialScale = new Vector3(0.1f, 0.1f, 0.1f);
+    private Vector3 FinalScale = new Vector3(1, 1, 1);
+    private Vector3 BigScale = new Vector3(1.5f, 1.5f, 1.5f);
     private bool playDisappear = false;
     private bool playBigger = false;
     private bool playStanderd = true;
@@ -60,6 +58,64 @@ public class EventBehavior : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+    {
+        ColorRandomizer();
+        assignPartyNames();
+
+
+        if (isJob)
+        {
+            companyNumber = Random.Range(0, 9);
+            eventName = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[companyNumber].name;
+            eventSpriteRenderer.sprite = jobSprite;
+        }
+        else // is a party 
+        {
+            theme = (CompanyManager.trend)Random.Range(0, 12); // picks a random theme
+            themeString = "Theme: " + theme.ToString(); // gets the theme name string to display
+            eventSpriteRenderer.sprite = partySprite;
+            salary = 0;
+            eventName = partyNameOptions[Random.Range(0, partyNameOptions.Length)];
+        }
+        
+        //Appear animation. Starts small
+        transform.localScale = InitialScale;
+
+        //Tooltips setup
+        /*tooltip is child object of the Event prefab*/
+        tooltip = transform.Find("Tooltip(Canvas)");
+        tooltip.gameObject.SetActive(false);
+        salaryTooltip.text = "Salary: " + salary.ToString();
+        themeTooltip.text = themeString;
+        nameTooltip.text = eventName;
+
+        //For tooltips blocked by the right edge of the screen, have them appear on the left
+        if (transform.parent.name == "City1"
+                || transform.parent.name == "City2"
+                || transform.parent.name == "City6"
+                || transform.parent.name == "City10")
+        {
+            tooltip.gameObject.transform.position = new Vector3(tooltip.gameObject.transform.position.x - 0.5f,
+                tooltip.gameObject.transform.position.y, tooltip.gameObject.transform.position.z);
+        }
+    }
+
+    private void Update()
+    {
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = !FindObjectOfType<ItemManager>().opened;
+
+        if (playStanderd)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, FinalScale, Time.deltaTime * 2);
+            if (!playBigger) tooltip.gameObject.SetActive(false);
+        }
+        if (playDisappear)
+            transform.localScale = Vector3.Lerp(transform.localScale, InitialScale, Time.deltaTime * 2);
+        if (playBigger)
+            transform.localScale = Vector3.Lerp(transform.localScale, BigScale, Time.deltaTime * 2);
+    }
+
+    private void ColorRandomizer()
     {
         //COLOR RANDOMIZER
         saturation = 0.4f;
@@ -72,65 +128,6 @@ public class EventBehavior : MonoBehaviour
         Color newColor = new Color(r, g, b, 1f);
 
         eventSpriteRenderer.color = newColor;
-
-
-        assignPartyNames();
-
-
-        if (isJob)
-        {
-            companyNumber = Random.Range(0, 9);
-            eventName = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[companyNumber].name;
-            eventSpriteRenderer.sprite = jobSprite;
-            salaryTooltip.text = "Salary: " + salary.ToString();
-        }
-        else // is a party 
-        {
-            theme = (CompanyManager.trend)Random.Range(0, 12); // picks a random theme
-            themeString = "Theme: " + theme.ToString(); // gets the theme name string to display
-            eventSpriteRenderer.sprite = partySprite;
-            salary = 0;
-            themeTooltip.text = themeString;
-            eventName = partyNameOptions[Random.Range(0, partyNameOptions.Length)];
-        }
-
-        nameTooltip.text = eventName;
-
-        //tooltip is a child object of this event prefab
-        childObj = transform.Find("Tooltip(Canvas)");
-        childObj.gameObject.SetActive(false);
-
-        //Appear animation
-        InitialScale = new Vector3(0.1f, 0.1f, 0.1f);
-        FinalScale = new Vector3(1, 1, 1);
-        BigScale = new Vector3(1.5f, 1.5f, 1.5f);
-        transform.localScale = InitialScale;
-
-
-        if (transform.parent.name == "City1"
-                || transform.parent.name == "City2"
-                || transform.parent.name == "City6"
-                || transform.parent.name == "City10")
-        {
-            childObj.gameObject.transform.position = new Vector3(childObj.gameObject.transform.position.x - 0.5f,
-                childObj.gameObject.transform.position.y, childObj.gameObject.transform.position.z);
-            Debug.Log("left");
-        }
-    }
-
-    private void Update()
-    {
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = !FindObjectOfType<ItemManager>().opened;
-
-        if (playStanderd)
-        {
-            transform.localScale = Vector3.Lerp(transform.localScale, FinalScale, Time.deltaTime * 2);
-            if (!playBigger) childObj.gameObject.SetActive(false);
-        }
-        if (playDisappear)
-            transform.localScale = Vector3.Lerp(transform.localScale, InitialScale, Time.deltaTime * 2);
-        if (playBigger)
-            transform.localScale = Vector3.Lerp(transform.localScale, BigScale, Time.deltaTime * 2);
     }
 
 
@@ -139,7 +136,7 @@ public class EventBehavior : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            childObj.gameObject.SetActive(true);
+            tooltip.gameObject.SetActive(true);
         }
         playBigger = true;
     }
@@ -148,7 +145,7 @@ public class EventBehavior : MonoBehaviour
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
-            childObj.gameObject.SetActive(false);
+            tooltip.gameObject.SetActive(false);
         }
         playBigger = false;
         playStanderd = true;
@@ -183,9 +180,6 @@ public class EventBehavior : MonoBehaviour
             {
                 thisEventState = eventState.SUCCESS;
                 GameManager.instance.fishCoin += salary; //money
-                var tempPopUp = Instantiate(successPopUp); //pop up message
-                tempPopUp.transform.parent = gameObject.transform;
-                Debug.Log("Success." + GameManager.instance.day + " $" + GameManager.instance.fishCoin);
 
                 //AUDIO
                 if (isJob)
@@ -204,9 +198,6 @@ public class EventBehavior : MonoBehaviour
             else if (correctItems == 0)
             {
                 thisEventState = eventState.FAIL;
-                var tempPopUp = Instantiate(failPopUp); //pop up message
-                tempPopUp.transform.parent = gameObject.transform;
-                Debug.Log("Fail." + GameManager.instance.day + " $" + GameManager.instance.fishCoin);
 
                 //AUDIO
                 if (isJob)
@@ -226,9 +217,6 @@ public class EventBehavior : MonoBehaviour
             {
                 thisEventState = eventState.SUPERSUCCESS;
                 GameManager.instance.fishCoin += Mathf.FloorToInt(salary * ssBonusMultiplier); //money
-                var tempPopUp = Instantiate(superSuccessPopUp); //pop up message
-                tempPopUp.transform.parent = gameObject.transform;
-                Debug.Log("SUPERSUCCESS." + GameManager.instance.day + " $" + GameManager.instance.fishCoin);
 
                 //AUDIO
                 if (isJob)
@@ -240,6 +228,9 @@ public class EventBehavior : MonoBehaviour
                     AudioManager.instance.party_success.Play();
                 }
             }
+
+            var tempPopUp = Instantiate(popUpPrefab); //pop up message
+            tempPopUp.transform.parent = gameObject.transform;
 
             GameManager.instance.day++;
         }
