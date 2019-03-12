@@ -236,18 +236,6 @@ public class EventBehavior : MonoBehaviour
         }
     }
 
-    public void disappearOnSuccess()
-    {
-        if (thisEventState == eventState.SUCCESS || thisEventState == eventState.SUPERSUCCESS)
-        {
-            //var FX = Instantiate(fireworksFX, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-            //Destroy(FX.gameObject, 3f);
-            Debug.Log("Disappear" + gameObject.name);
-            //Destroy(gameObject, 0.2f);
-            transform.GetComponentInParent<City>().type = City.cityType.none;
-        }
-    }
-
     public int determineJobSuccess()
     {
         int result = 0;

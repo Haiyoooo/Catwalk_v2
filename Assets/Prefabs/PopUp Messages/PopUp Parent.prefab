@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7100868009878463991}
   - component: {fileID: 7910305044279219411}
   - component: {fileID: 5603601983572375554}
-  - component: {fileID: 5221910611644430617}
   - component: {fileID: 6621769616366004724}
   m_Layer: 5
   m_Name: goldFishCoin
@@ -117,7 +116,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5221910611644430617}
+      - m_Target: {fileID: 0}
         m_MethodName: hidePopUp
         m_Mode: 1
         m_Arguments:
@@ -130,18 +129,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5221910611644430617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 831433121292540282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 189997c64c2778b438aaaa48cb214b33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6621769616366004724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,7 +691,6 @@ GameObject:
   - component: {fileID: 4789273260309497242}
   - component: {fileID: 5141565893518975455}
   - component: {fileID: 7870141051486068935}
-  - component: {fileID: 736073042704988721}
   m_Layer: 5
   m_Name: Blue Button
   m_TagString: Untagged
@@ -832,18 +818,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfe5a849c6d5fc1448399c51f6d20f22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &736073042704988721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3892346384787942937}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 189997c64c2778b438aaaa48cb214b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4997452188810234143
@@ -1006,7 +980,6 @@ GameObject:
   - component: {fileID: 6648645913250768042}
   - component: {fileID: 7298528340956170532}
   - component: {fileID: 2345393823720041614}
-  - component: {fileID: 2113721601038920873}
   m_Layer: 5
   m_Name: White Rect Button
   m_TagString: Untagged
@@ -1110,7 +1083,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2113721601038920873}
+      - m_Target: {fileID: 0}
         m_MethodName: hidePopUp
         m_Mode: 1
         m_Arguments:
@@ -1123,18 +1096,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &2113721601038920873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5873345035739912640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 189997c64c2778b438aaaa48cb214b33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8129338497172409138
 GameObject:
   m_ObjectHideFlags: 0

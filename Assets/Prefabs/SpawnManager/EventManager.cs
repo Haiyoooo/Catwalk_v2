@@ -29,22 +29,31 @@ public class EventManager : MonoBehaviour
     void Start()
     {
         spawnpoints = GameObject.FindGameObjectsWithTag("City");
+
+        //spawn one job at the start
+        if (totalJobs < maxJobs)
+        {
+            spawnAsJob(emptyCity(), true); //if true, spawn job. if false, spawn party.
+        }
     }
 
 
     void Update()
     {
-        //spawn jobs/parties on an empty city
-        if (totalJobs < maxJobs)
-        {
-            spawnAsJob(emptyCity(), true); //if true, spawn job. if false, spawn party.
-        }
-
+        //there should always be two parties
         if (totalParties < maxParties)
         {
             spawnAsJob(emptyCity(), false);
         }
+    }
 
+    public void spawnJob()
+    {
+        //spawn jobs on an empty city
+        if (totalJobs < maxJobs)
+        {
+            spawnAsJob(emptyCity(), true); //if true, spawn job. if false, spawn party.
+        }
     }
 
     private Transform emptyCity()
@@ -60,7 +69,7 @@ public class EventManager : MonoBehaviour
         return spawnpoints[rng].transform;
     }
 
-    private void spawnAsJob(Transform spawn, bool isJob)
+    public void spawnAsJob(Transform spawn, bool isJob)
     {
         //spawn a new event as job
         var newEvent = Instantiate(eventPrefab, spawn.position, Quaternion.identity);

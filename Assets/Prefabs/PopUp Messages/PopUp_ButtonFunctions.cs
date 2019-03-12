@@ -19,13 +19,15 @@ public class PopUp_ButtonFunctions : MonoBehaviour
         //EventManager.instance.destroyEvent(thisEventBehavior.isJob);
 
         //update count
-        if (thisEventBehavior.isJob == false)
+        if (thisEventBehavior.isJob == true)
         {
             EventManager.instance.totalJobs--;
         }
-        else
+        else //is party
         {
+            //decrease party count, and spawn a job
             EventManager.instance.totalParties--;
+            EventManager.instance.spawnJob();
         }
 
         //Destroy the event prefab
