@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class PopUp_Messages : MonoBehaviour
 {
-
-
-
     [Header("Party Messages")]
     public string[] success_party;
     public string[] fail_party;
@@ -24,6 +21,7 @@ public class PopUp_Messages : MonoBehaviour
     [SerializeField] private GameObject party_success_img;
     [SerializeField] private GameObject party_superSucess_img;
     [SerializeField] private GameObject job_sucess_img;
+    [SerializeField] private GameObject job_superSucess_img;
 
     private int tempMessage;
     private EventBehavior parent;  
@@ -53,6 +51,12 @@ public class PopUp_Messages : MonoBehaviour
         var tempWant = Random.Range(0, 2);
         style = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[tempRandom].itWants[tempWant].ToString();   //0 1 style randomizer   /why zac why
 
+
+        //hide all
+        partyJob_fail_img.SetActive(false);
+        party_success_img.SetActive(false);
+        job_sucess_img.SetActive(false);
+        party_superSucess_img.SetActive(false);
     }
 
     private void Update()
@@ -69,10 +73,8 @@ public class PopUp_Messages : MonoBehaviour
                     msgText.text = success_job[tempMessage];
                     goldText.text = "+" + parent.salary;
 
-                    partyJob_fail_img.SetActive(false);
-                    party_success_img.SetActive(false);
                     job_sucess_img.SetActive(true);
-                    party_superSucess_img.SetActive(false);
+
 
                     break;
 
@@ -81,10 +83,8 @@ public class PopUp_Messages : MonoBehaviour
                     msgText.text = super_job[tempMessage];
                     goldText.text = "+" + parent.salary;
 
-                    partyJob_fail_img.SetActive(false);
-                    party_success_img.SetActive(false);
-                    job_sucess_img.SetActive(true);
-                    party_superSucess_img.SetActive(false);
+                    job_superSucess_img.SetActive(true);
+
 
                     break;
 
@@ -95,9 +95,6 @@ public class PopUp_Messages : MonoBehaviour
                     goldFishCoin.enabled = false;
 
                     partyJob_fail_img.SetActive(true);
-                    party_success_img.SetActive(false);
-                    job_sucess_img.SetActive(false);
-                    party_superSucess_img.SetActive(false);
 
                     break;
             }
@@ -116,19 +113,14 @@ public class PopUp_Messages : MonoBehaviour
 
                     msgText.text = "" + success_party[0] + " " + "<b><color=green>" + companyName + "</color></b>" + " likes " + "<b><color=green>" + style + "</color></b>" + " clothes...";
 
-                    partyJob_fail_img.SetActive(false);
                     party_success_img.SetActive(true);
-                    job_sucess_img.SetActive(false);
-                    party_superSucess_img.SetActive(false);
+
                     break;
 
                 case (EventBehavior.eventState.SUPERSUCCESS):
 
                     msgText.text = "" + super_party[0] + " " + "<b><color=green>" + companyName + "</color></b>" + " likes " + "<b><color=green>" + style + "</color></b>" + " clothes...";
 
-                    partyJob_fail_img.SetActive(false);
-                    party_success_img.SetActive(false);
-                    job_sucess_img.SetActive(false);
                     party_superSucess_img.SetActive(true);
                     break;
 
@@ -137,9 +129,6 @@ public class PopUp_Messages : MonoBehaviour
                     msgText.text = fail_party[tempMessage];
 
                     partyJob_fail_img.SetActive(true);
-                    party_success_img.SetActive(false);
-                    job_sucess_img.SetActive(false);
-                    party_superSucess_img.SetActive(false);
                     break;
             }
         }
