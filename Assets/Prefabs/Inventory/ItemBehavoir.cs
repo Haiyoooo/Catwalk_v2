@@ -26,6 +26,8 @@ public class ItemBehavoir : MonoBehaviour
     enum putOn { head, body };
     [SerializeField] putOn wornOn;
 
+    private GameObject player;
+
 
     void Start()
     {
@@ -39,16 +41,16 @@ public class ItemBehavoir : MonoBehaviour
         costText = gameObject.GetComponentInChildren<Text>();
         fishcoin = gameObject.transform.GetChild(0).GetChild(1);
 
-    }
-
-    
-    void Update()
-    {
+        player = GameObject.FindGameObjectWithTag("Player");
 
 
         //Display Money
         costText.text = "" + cost;
+    }
 
+
+    void Update()
+    {
 
         // Buying Code
         if ( mouseOver && (location == foundIn.store) && Input.GetMouseButtonDown(0) && outMaskY() )
@@ -78,13 +80,13 @@ public class ItemBehavoir : MonoBehaviour
 
             if (wornOn == putOn.head) // head
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headItem = null;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headStyle = CompanyManager.trend.BirthdaySuit;
+                player.GetComponent<PlayerBehavior>().headItem = null;
+                player.GetComponent<PlayerBehavior>().headStyle = CompanyManager.trend.BirthdaySuit;
             }
             else if (wornOn == putOn.body) // body
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyItem = null;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyStyle = CompanyManager.trend.BirthdaySuit;
+                player.GetComponent<PlayerBehavior>().bodyItem = null;
+                player.GetComponent<PlayerBehavior>().bodyStyle = CompanyManager.trend.BirthdaySuit;
             }
         }
 
@@ -93,12 +95,14 @@ public class ItemBehavoir : MonoBehaviour
         // Equip Code
         else if ( mouseOver && (location == foundIn.closet) && Input.GetMouseButtonDown(0) && outMaskY() )
         {
+            //List<GameObject> 
+            
             // if this is a headpiece, look through all the items that are also 
             // headpieces and unequip the one that was previously equipped
             if (wornOn == putOn.head) // head
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headItem = wornItemSprite;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().headStyle = style;
+                player.GetComponent<PlayerBehavior>().headItem = wornItemSprite;
+                player.GetComponent<PlayerBehavior>().headStyle = style;
                 foreach (ItemBehavoir item in GameObject.FindObjectsOfType<ItemBehavoir>())
                 {
                     if (item.wornOn == putOn.head)
@@ -115,8 +119,8 @@ public class ItemBehavoir : MonoBehaviour
             // bodypieces and unequip the one that was previously equipped
             else if (wornOn == putOn.body) // body
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyItem = wornItemSprite;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehavior>().bodyStyle = style;
+                player.GetComponent<PlayerBehavior>().bodyItem = wornItemSprite;
+                player.GetComponent<PlayerBehavior>().bodyStyle = style;
                 foreach (ItemBehavoir item in GameObject.FindObjectsOfType<ItemBehavoir>())
                 {
                     if (item.wornOn == putOn.body)
