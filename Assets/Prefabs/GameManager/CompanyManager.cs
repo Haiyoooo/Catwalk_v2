@@ -28,6 +28,8 @@ public class CompanyManager : MonoBehaviour
             comp.itWants[1] = comp.itLikes[rand2]; // add the likes index to the wants list
             string test = comp.itWants[1].ToString();
 
+            comp.jobColor = ColorRandomizer();
+
         }
 
 
@@ -38,8 +40,18 @@ public class CompanyManager : MonoBehaviour
     {
 
     }
+    
+    public Color ColorRandomizer() {
+        //COLOR RANDOMIZER
+        float saturation = 0.4f;
 
+        float r = Random.Range(saturation, 1f);     //1 is white & 0 is black
+        float g = Random.Range(saturation, 1f);
+        float b = Random.Range(saturation, 1f);
 
+        return new Color(r, g, b, 1f);
+    }
+    
 }
 
 
@@ -49,5 +61,6 @@ public class Company
     public string name;
     public CompanyManager.trend[] itLikes = new CompanyManager.trend[4];
     public CompanyManager.trend[] itWants = new CompanyManager.trend[2];
+    public Color jobColor;
 }
 

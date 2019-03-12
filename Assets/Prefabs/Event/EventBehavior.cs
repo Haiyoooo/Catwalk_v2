@@ -59,7 +59,8 @@ public class EventBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ColorRandomizer();
+        eventSpriteRenderer = transform.GetComponent<SpriteRenderer>();
+        //ColorRandomizer();
         assignPartyNames();
 
 
@@ -68,12 +69,14 @@ public class EventBehavior : MonoBehaviour
             companyNumber = Random.Range(0, 9);
             eventName = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[companyNumber].name;
             eventSpriteRenderer.sprite = jobSprite;
+            eventSpriteRenderer.color = GameObject.FindGameObjectWithTag("Company Manager").GetComponent<CompanyManager>().CompanyList[companyNumber].jobColor;
         }
         else // is a party 
         {
             theme = (CompanyManager.trend)Random.Range(0, 12); // picks a random theme
             themeString = "Theme: " + theme.ToString(); // gets the theme name string to display
             eventSpriteRenderer.sprite = partySprite;
+            ColorRandomizer();
             salary = 0;
             eventName = partyNameOptions[Random.Range(0, partyNameOptions.Length)];
         }
@@ -114,12 +117,11 @@ public class EventBehavior : MonoBehaviour
         if (playBigger)
             transform.localScale = Vector3.Lerp(transform.localScale, BigScale, Time.deltaTime * 2);
     }
-
+    
     private void ColorRandomizer()
     {
         //COLOR RANDOMIZER
         saturation = 0.4f;
-        eventSpriteRenderer = transform.GetComponent<SpriteRenderer>();
 
         float r = Random.Range(saturation, 1f);     //1 is white & 0 is black
         float g = Random.Range(saturation, 1f);
@@ -129,7 +131,7 @@ public class EventBehavior : MonoBehaviour
 
         eventSpriteRenderer.color = newColor;
     }
-
+    
 
     //Tool tip
     private void OnMouseOver()
