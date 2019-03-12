@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private bool weekNumUpdated;
 
     public int fishCoin;
+    public int fishCoinDisplay;
     public int debt;
     public int[] debtList;
     private bool isPaid;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         lastWeek = 4;
         currentWeek = 1;
         fishCoin = 10;
+        fishCoinDisplay = fishCoin;
         debt = 20;
         isPaid = false;
         weekNumUpdated = false;
@@ -64,13 +66,26 @@ public class GameManager : MonoBehaviour
         PayOnDeadline();
         UpdateWeekNum();
         weekNumText.GetComponent<TextMeshProUGUI>().text = "Week " + currentWeek + " of " + lastWeek;
+
+        // rolling fish coin display, updates every 4 frames (at 15 fps)
+        if ( (fishCoinDisplay != fishCoin) && (Time.frameCount%4 == 0) ) { // if the display isn't the same as the actual amount
+            if (fishCoinDisplay > fishCoin) { // if display is greater than actual
+                fishCoinDisplay--;
+            }
+            else { // if display is lesser than actual
+                fishCoinDisplay++;
+            }
+
+        }
+
+
     }
 
     private void DisplayCashDebt()
     {
         Debug.Log(cashText);
         debtText.GetComponent<Text>().text = "owe: " + debt;
-        cashText.GetComponent<Text>().text = "" + fishCoin;
+        cashText.GetComponent<Text>().text = "" + fishCoinDisplay;
     }
 
     private void PayOnDeadline()
