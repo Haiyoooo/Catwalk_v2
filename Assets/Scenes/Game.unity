@@ -209,6 +209,11 @@ PrefabInstance:
       propertyPath: DopplerLevel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1317866660699319498, guid: 8d4c81fa5903aa94faa54e2423ba4dc1,
+        type: 3}
+      propertyPath: Priority
+      value: 105
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d4c81fa5903aa94faa54e2423ba4dc1, type: 3}
 --- !u!1 &106126203 stripped
@@ -4440,6 +4445,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4915508188144594301, guid: ff593f8e5f2c73e45b436854cd135942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5829216227201194258, guid: ff593f8e5f2c73e45b436854cd135942,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7997212644434372379, guid: ff593f8e5f2c73e45b436854cd135942,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4556,16 +4571,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 29496832221196837, guid: ff593f8e5f2c73e45b436854cd135942,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4915508188144594301, guid: ff593f8e5f2c73e45b436854cd135942,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829216227201194258, guid: ff593f8e5f2c73e45b436854cd135942,
         type: 3}
       propertyPath: m_IsActive
       value: 1
