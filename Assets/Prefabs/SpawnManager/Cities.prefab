@@ -753,7 +753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7143243839430637376}
-  - component: {fileID: 8157385029786194225}
+  - component: {fileID: 1621790791}
   m_Layer: 0
   m_Name: Cities
   m_TagString: Untagged
@@ -785,7 +785,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8157385029786194225
+--- !u!114 &1621790791
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -794,24 +794,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7143243839430637379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f6a1f983ae7214ba3b9f6167d9c7c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 756a1da33e0cf784db05e3db57bbc8e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cities:
-  - {fileID: 7143243838868298873}
-  - {fileID: 7143243839472209906}
-  - {fileID: 7143243839440609396}
-  - {fileID: 7143243838544563374}
-  - {fileID: 7143243838513344683}
-  - {fileID: 7143243838218958905}
-  - {fileID: 7143243838190998894}
-  - {fileID: 7143243838748031682}
-  - {fileID: 988949487975771103}
-  - {fileID: 3747905137372809767}
   eventPrefab: {fileID: 945904642881673508, guid: e6295185a01ad184d82522993475a07e,
     type: 3}
-  emptyPrefab: {fileID: 4891594174177151358, guid: 1dfdd06642880af4594da4aa16aa5f4b,
-    type: 3}
+  totalJobs: 0
+  totalParties: 0
+  maxJobs: 5
+  maxParties: 1
 --- !u!1 &7143243839440609396
 GameObject:
   m_ObjectHideFlags: 0
