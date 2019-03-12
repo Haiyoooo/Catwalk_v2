@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PopUp_Messages : MonoBehaviour
 {
+
+
+
     [Header("Party Messages")]
     public string[] success_party;
     public string[] fail_party;
