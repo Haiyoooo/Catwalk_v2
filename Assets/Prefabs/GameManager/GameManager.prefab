@@ -45,26 +45,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   day: 1
   countDown: 7
-  timeBar: {fileID: 0}
-  dayNumberText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  dayNumber: 01000000020000000300000004000000050000000600000007000000
   lastWeek: 4
   currentWeek: 1
-  backWhite: 0
   fishCoin: 10
   debt: 20
   debtList: 140000002800000064000000fa000000
   cashText: {fileID: 0}
+  debtText: {fileID: 0}
   endWeekPrefab: {fileID: 0}
   endWeekText: {fileID: 0}
   nextweekButton: {fileID: 0}
   quitButton: {fileID: 0}
+  image: {fileID: 0}
+  gameWinSprite: {fileID: 21300000, guid: 2918d20f87a396f4abfcc21827a71fca, type: 3}
   gameover: {fileID: 0}
   gamewin: {fileID: 0}

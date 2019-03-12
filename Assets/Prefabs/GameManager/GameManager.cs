@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     private bool isPaid;
 
     public GameObject cashText;
-    //public GameObject debtText;
-    //private Text fameStatusText;
+    public GameObject debtText;
+    private Text fameStatusText;
     public GameObject endWeekPrefab;
     public GameObject endWeekText;
     public GameObject nextweekButton;
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     private void DisplayCashDebt()
     {
         Debug.Log(cashText);
-        //debtText.GetComponent<Text>().text = "owe: " + debt;
+        debtText.GetComponent<Text>().text = "owe: " + debt;
         cashText.GetComponent<Text>().text = "" + fishCoin;
     }
 
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     {
         if (day % countDown == 0 && day > 1 && !isPaid)
         {
-            //fishCoin -= debt;
+            fishCoin -= debt;
             isPaid = true;
             endWeekPrefab.SetActive(true);
 
