@@ -47,6 +47,7 @@ MonoBehaviour:
   countDown: 7
   lastWeek: 4
   currentWeek: 1
+  weekNumText: {fileID: 0}
   fishCoin: 10
   debt: 20
   debtList: 140000002800000064000000fa000000

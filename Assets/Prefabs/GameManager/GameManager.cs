@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float countDown;
     public int lastWeek;
     public int currentWeek;
+    public GameObject weekNumText;
     private bool weekNumUpdated;
 
     public int fishCoin;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         DisplayCashDebt();
         PayOnDeadline();
         UpdateWeekNum();
+        weekNumText.GetComponent<TextMeshProUGUI>().text = "Week " + currentWeek + " of " + lastWeek;
     }
 
     private void DisplayCashDebt()
