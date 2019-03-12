@@ -27,8 +27,11 @@ public class GameManager : MonoBehaviour
     public GameObject endWeekText;
     public GameObject nextweekButton;
     public GameObject quitButton;
+    public Image image;
+    [SerializeField] private Sprite gameWinSprite;
     [SerializeField] private GameObject gameover;
     [SerializeField] private GameObject gamewin;
+    private EndWeek endWeek;
     
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
         debt = debtList[0];
 
         //hide the endWeek pop-up window
+        endWeek = GetComponent<EndWeek>();
         endWeekPrefab.SetActive(false);
     }
 
@@ -77,6 +81,7 @@ public class GameManager : MonoBehaviour
 
             if (fishCoin <= 0)
             {//GAME OVER
+                //endWeek.GameOver();
                 endWeekText.GetComponent<TextMeshProUGUI>().text = "What, not enough money to pay your debt? GO TO JAIL.";
                 quitButton.SetActive(true);
                 nextweekButton.SetActive(false);
@@ -84,12 +89,13 @@ public class GameManager : MonoBehaviour
                 //imgs
                 gameover.SetActive(true);
                 gamewin.SetActive(false);
-                //SceneManager.LoadScene(2);
+                ////SceneManager.LoadScene(2);
             }
             else
             {
                 if (currentWeek == lastWeek)
                 { //Won the game
+                    //endWeek.GameWin();
                     endWeekText.GetComponent<TextMeshProUGUI>().text = "YOU WON! Debt free & famous!!!";
                     quitButton.SetActive(true);
                     nextweekButton.SetActive(false);
@@ -98,14 +104,14 @@ public class GameManager : MonoBehaviour
 
                 else //Go to next week
                 {
+                    //endWeek.NextWeek();
                     endWeekText.GetComponent<TextMeshProUGUI>().text = "Yay, you paid your " + debt + " FishCoin debt on time!";
                     quitButton.SetActive(false);
                     nextweekButton.SetActive(true);
                 }
 
-                //imgs
-                gameover.SetActive(false);
-                gamewin.SetActive(true);
+                ////imgs //TODO: Eunice fix
+                image.sprite = gameWinSprite;
             }
             
             print("end week popup");
