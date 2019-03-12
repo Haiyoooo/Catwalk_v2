@@ -28,6 +28,9 @@ public class ItemBehavoir : MonoBehaviour
 
     private GameObject player;
 
+    List<ItemBehavoir> itemScriptList = new List<ItemBehavoir>();
+
+
 
     void Start()
     {
@@ -43,9 +46,13 @@ public class ItemBehavoir : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
-
         //Display Money
         costText.text = "" + cost;
+
+        //Populate the list of item scripts
+        foreach (ItemBehavoir script in FindObjectsOfType<ItemBehavoir>()) {
+            itemScriptList.Add(script);
+        }
     }
 
 
@@ -95,7 +102,6 @@ public class ItemBehavoir : MonoBehaviour
         // Equip Code
         else if ( mouseOver && (location == foundIn.closet) && Input.GetMouseButtonDown(0) && outMaskY() )
         {
-            //List<GameObject> 
             
             // if this is a headpiece, look through all the items that are also 
             // headpieces and unequip the one that was previously equipped
@@ -103,7 +109,7 @@ public class ItemBehavoir : MonoBehaviour
             {
                 player.GetComponent<PlayerBehavior>().headItem = wornItemSprite;
                 player.GetComponent<PlayerBehavior>().headStyle = style;
-                foreach (ItemBehavoir item in GameObject.FindObjectsOfType<ItemBehavoir>())
+                foreach (ItemBehavoir item in itemScriptList)
                 {
                     if (item.wornOn == putOn.head)
                     {
@@ -121,7 +127,7 @@ public class ItemBehavoir : MonoBehaviour
             {
                 player.GetComponent<PlayerBehavior>().bodyItem = wornItemSprite;
                 player.GetComponent<PlayerBehavior>().bodyStyle = style;
-                foreach (ItemBehavoir item in GameObject.FindObjectsOfType<ItemBehavoir>())
+                foreach (ItemBehavoir item in itemScriptList)
                 {
                     if (item.wornOn == putOn.body)
                     {
