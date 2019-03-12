@@ -984,8 +984,8 @@ MonoBehaviour:
   success_party:
   - You heard a rumor at the party. It seems like
   fail_party:
-  - They didn't  give your clothes a second glance...
-  - They didn''t like your clothes, so no one  spoke to you...
+  - They didn't give your clothes a second glance...
+  - They didn't like your clothes, so no one spoke to you...
   - You ate alone in the corner because you're unfashionable...
   super_party:
   - Your heard a rumor at the party. It seems like
@@ -994,13 +994,13 @@ MonoBehaviour:
   - PAW-SOME! They thought you were one stylish cat!
   - Your CLAW-ver clothes sure caught their eye!
   fail_job:
-  - Are you FUR-real? You won't impress anyone with that clothing combo
+  - Are you FUR-real? You won't impress anyone with that clothing combo.
   - They thought your clothes were CLAW-ful...
   - With style like that you can FUR-get about success!
   super_job:
-  - They loved you! You're SCRATCHING at the surfact of success!
-  - PURR-fect! You''re the best -dressed kitty around!
-  - You''re a kitty with FUR-midable fashion sense!
+  - They loved you! You're SCRATCHING at the surface of success!
+  - PURR-fect! You're the best-dressed kitty around!
+  - You're a kitty with FUR-midable fashion sense!
   partyJob_fail_img: {fileID: 2863629799295259085}
   party_success_img: {fileID: 1288006681921250919}
   party_superSucess_img: {fileID: 3460516783676105676}

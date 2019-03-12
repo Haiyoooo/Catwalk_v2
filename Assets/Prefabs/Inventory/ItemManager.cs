@@ -28,18 +28,20 @@ public class ItemManager : MonoBehaviour
     private float shopAnchorOffSetX;
     private float closetAnchorOffSetX;
     private float anchorOffSetY;
+    private int itemSpacing;
+    private int itemsInRow;
+
     private float iconEase;
     private float massEase;
     private float itemScaleEase;
     private float storeItemEase;
     private float closetItemEase;
     private float itemRecallEase;
+
     private float arrowX;
     private float arrowUpY;
     private float arrowDownY;
-    private int itemSpacing;
-    private int itemsInRow;
-    [SerializeField] private float arrowCeiling;
+    private float arrowCeiling;
     private float arrowFloor;
     private Vector3 arrowScale;
     private Vector3 windowScale;
@@ -85,28 +87,33 @@ public class ItemManager : MonoBehaviour
         closetUp = Instantiate(tempClosetUp, transform.position, Quaternion.identity);
         closetDown = Instantiate(tempClosetDown, transform.position, Quaternion.identity);
 
-        // finds and disables the gray out rect
+        // Finds and disables the gray out rect
         childObj = transform.Find("Canvas");
         childObj.gameObject.SetActive(false);
 
+
         // Previously hard coded numbers
-        shopAnchorOffSetX = 1.36f;
-        closetAnchorOffSetX = -5.36f;
-        anchorOffSetY = -1.1f;
-        iconEase = 0.1f;
-        massEase = 0.2f;
+        shopAnchorOffSetX = 1.36f;          // the X distance from the shop anchor (which is spawned at the Shop Icon) to the X position of the first item in the shop
+        closetAnchorOffSetX = -5.36f;       // the X distance from the closet anchor (which is at the Closet Icon's open position on the top right corner of the screen) to the X position of the first item in the closet
+        anchorOffSetY = -1.1f;              // the Y distance from both anchors to the Y position of the first row of the items on the shop and closet
+        itemSpacing = 2;
+        itemsInRow = 3;
+
+        // Lerp animation speeds
+        iconEase = 0.1f;                    // for the closet icon moving to the top right corner of the screen
+        massEase = 0.2f;                    // the easing value used for most everything, if a specific easing value isn't used
         itemScaleEase = 0.1f;
-        storeItemEase = 0.4f;
-        closetItemEase = 0.1f;
+        storeItemEase = 0.4f;               // the easing value used for all the store item movement (but not when the shop is closing)
+        closetItemEase = 0.1f;              // the easing value used for all the closet item movement (but not when the shop is closing)
         itemRecallEase = 0.1f;
+
+        // Sets the locations and when they are disabled for the scrolling arrows
         arrowX = 3.39f;
         arrowUpY = 4.43f;
         arrowDownY = -2.06f;
         arrowScale = 0.05f * Vector3.one;
-        itemSpacing = 2;
-        itemsInRow = 3;
-        arrowCeiling = shopAnchor.transform.position.y + (itemSpacing/2); // 5
-        arrowFloor = arrowCeiling + ( (itemSpacing/2) * (AllItemList.Length/itemsInRow) ); // 13
+        arrowCeiling = shopAnchor.transform.position.y + (itemSpacing/2); // 5,                     DON'T SCREW WITH THIS
+        arrowFloor = arrowCeiling + ( (itemSpacing/2) * (AllItemList.Length/itemsInRow) ); // 13,   DON'T SCREW WITH THIS
         windowScale = new Vector3(1, 0.725f, 1);
     
         storeMask = GameObject.Find("Store Mask");

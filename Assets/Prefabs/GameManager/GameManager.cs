@@ -67,15 +67,29 @@ public class GameManager : MonoBehaviour
         UpdateWeekNum();
         weekNumText.GetComponent<TextMeshProUGUI>().text = "Week " + currentWeek + " of " + lastWeek;
 
-        // rolling fish coin display, updates every 4 frames (at 15 fps)
-        if ( (fishCoinDisplay != fishCoin) && (Time.frameCount%4 == 0) ) { // if the display isn't the same as the actual amount
-            if (fishCoinDisplay > fishCoin) { // if display is greater than actual
-                fishCoinDisplay--;
+        // Rolling Fish Coin Display
+        if ( fishCoinDisplay != fishCoin ) { // if the display isn't the same as the actual amount
+            if (Mathf.Abs(fishCoinDisplay - fishCoin) < 100) { // if the disparity is small enough (<100)
+                if (Time.frameCount % 4 == 0) { // updates every 4 frames (at 15 fps)
+                    if (fishCoinDisplay > fishCoin) { // if display is greater than actual
+                        fishCoinDisplay--;
+                    }
+                    else { // if display is lesser than actual
+                        fishCoinDisplay++;
+                    }
+                }
             }
-            else { // if display is lesser than actual
-                fishCoinDisplay++;
+            else { // if the disparity is large enough (>100)
+                if (Time.frameCount % 1 == 0) { // updates every frame (at 60 fps)
+                    if (fishCoinDisplay > fishCoin) { // if display is greater than actual
+                        fishCoinDisplay--;
+                    }
+                    else { // if display is lesser than actual
+                        fishCoinDisplay++;
+                    }
+                }
             }
-
+            
         }
 
 
