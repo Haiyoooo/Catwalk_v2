@@ -23,7 +23,27 @@ public class ItemManager : MonoBehaviour
     [SerializeField] GameObject tempClosetDown;
 
     public Transform childObj;
+
+    // Previously hard coded number variables
+    private float shopAnchorOffSetX;
+    private float closetAnchorOffSetX;
+    private float anchorOffSetY;
+    private float iconEase;
+    private float massEase;
+    private float itemScaleEase;
+    private float storeItemEase;
+    private float closetItemEase;
+    private float itemRecallEase;
+    private float arrowX;
+    private float arrowUpY;
+    private float arrowDownY;
+    private int itemSpacing;
+    private int itemsInRow;
+    [SerializeField] private float arrowCeiling;
+    private float arrowFloor;
+    private Vector3 arrowScale;
     private Vector3 windowScale;
+
     GameObject storeMask;
     GameObject closetMask;
 
@@ -34,6 +54,8 @@ public class ItemManager : MonoBehaviour
 
     Vector3 shopAnchorSpot;
     Vector3 closetAnchorSpot;
+
+    List<ItemBehavoir> itemScriptList = new List<ItemBehavoir>();
 
     // Game objects that will be spawned on start
     GameObject closetIcon;
@@ -66,8 +88,27 @@ public class ItemManager : MonoBehaviour
         // finds and disables the gray out rect
         childObj = transform.Find("Canvas");
         childObj.gameObject.SetActive(false);
-        windowScale = new Vector3(1, 0.725f, 1);
 
+        // Previously hard coded numbers
+        shopAnchorOffSetX = 1.36f;
+        closetAnchorOffSetX = -5.36f;
+        anchorOffSetY = -1.1f;
+        iconEase = 0.1f;
+        massEase = 0.2f;
+        itemScaleEase = 0.1f;
+        storeItemEase = 0.4f;
+        closetItemEase = 0.1f;
+        itemRecallEase = 0.1f;
+        arrowX = 3.39f;
+        arrowUpY = 4.43f;
+        arrowDownY = -2.06f;
+        arrowScale = 0.05f * Vector3.one;
+        itemSpacing = 2;
+        itemsInRow = 3;
+        arrowCeiling = shopAnchor.transform.position.y + (itemSpacing/2); // 5
+        arrowFloor = arrowCeiling + ( (itemSpacing/2) * (AllItemList.Length/itemsInRow) ); // 13
+        windowScale = new Vector3(1, 0.725f, 1);
+    
         storeMask = GameObject.Find("Store Mask");
         closetMask = GameObject.Find("Closet Mask");
 
@@ -79,8 +120,13 @@ public class ItemManager : MonoBehaviour
             temp.GetComponent<ItemBehavoir>().cost = pair.cost;
         }
 
-        shopAnchorSpot = new Vector3(shopAnchor.transform.position.x + 1.36f, shopAnchor.transform.position.y - 1.1f, 0);
-        closetAnchorSpot = new Vector3(closetAnchor.transform.position.x - 5.36f, closetAnchor.transform.position.y - 1.1f, 0);
+        shopAnchorSpot = new Vector3(shopAnchor.transform.position.x + shopAnchorOffSetX, shopAnchor.transform.position.y + anchorOffSetY, 0);
+        closetAnchorSpot = new Vector3(closetAnchor.transform.position.x + closetAnchorOffSetX, closetAnchor.transform.position.y + anchorOffSetY, 0);
+
+        //Populate the list of item scripts
+        foreach (ItemBehavoir script in FindObjectsOfType<ItemBehavoir>()) {
+            itemScriptList.Add(script);
+        }
 
     }
 
@@ -109,8 +155,8 @@ public class ItemManager : MonoBehaviour
         {
             // closet icon moves to the top right of the screen
             Vector3 targetVector = new Vector3(-transform.position.x, transform.position.y, 0);
-            closetIcon.transform.position = Vector3.Lerp(closetIcon.transform.position, targetVector, 0.1f);
-            closetWindow.transform.position = Vector3.Lerp(closetWindow.transform.position, targetVector, 0.1f);
+            closetIcon.transform.position = Vector3.Lerp(closetIcon.transform.position, targetVector, iconEase);
+            closetWindow.transform.position = Vector3.Lerp(closetWindow.transform.position, targetVector, iconEase);
 
             if (closetIcon.transform.position.x > 1) // if the closet icon gets far enough to the right
             {
@@ -118,25 +164,25 @@ public class ItemManager : MonoBehaviour
                 Vector3 maskScale = new Vector3(1.4f, 1.7f, 1);
 
                 // store window and mask open and resize
-                storeWindow.transform.localScale = Vector3.Lerp(storeWindow.transform.localScale, windowScale, 0.2f);
-                storeMask.transform.localScale = Vector3.Lerp(storeMask.transform.localScale, maskScale, 0.2f);
+                storeWindow.transform.localScale = Vector3.Lerp(storeWindow.transform.localScale, windowScale, massEase);
+                storeMask.transform.localScale = Vector3.Lerp(storeMask.transform.localScale, maskScale, massEase);
 
                 // closet window and mask open and resize
-                closetWindow.transform.localScale = Vector3.Lerp(closetWindow.transform.localScale, windowScale, 0.2f);
-                closetMask.transform.localScale = Vector3.Lerp(closetMask.transform.localScale, maskScale, 0.2f);
+                closetWindow.transform.localScale = Vector3.Lerp(closetWindow.transform.localScale, windowScale, massEase);
+                closetMask.transform.localScale = Vector3.Lerp(closetMask.transform.localScale, maskScale, massEase);
 
                 // arrows open and resize
-                storeUp.transform.position = Vector3.Lerp(storeUp.transform.position, new Vector3(-3.39f, 4.43f, 0), 0.2f);
-                storeUp.transform.localScale = Vector3.Lerp(storeUp.transform.localScale, 0.05f * Vector3.one, 0.2f);
+                storeUp.transform.position = Vector3.Lerp(storeUp.transform.position, new Vector3(-arrowX, arrowUpY, 0), massEase);
+                storeUp.transform.localScale = Vector3.Lerp(storeUp.transform.localScale, arrowScale, massEase);
 
-                storeDown.transform.position = Vector3.Lerp(storeDown.transform.position, new Vector3(-3.39f, -2.06f, 0), 0.2f);
-                storeDown.transform.localScale = Vector3.Lerp(storeDown.transform.localScale, 0.05f * Vector3.one, 0.2f);
+                storeDown.transform.position = Vector3.Lerp(storeDown.transform.position, new Vector3(-arrowX, arrowDownY, 0), massEase);
+                storeDown.transform.localScale = Vector3.Lerp(storeDown.transform.localScale, arrowScale, massEase);
 
-                closetUp.transform.position = Vector3.Lerp(closetUp.transform.position, new Vector3(3.39f, 4.43f, 0), 0.2f);
-                closetUp.transform.localScale = Vector3.Lerp(closetUp.transform.localScale, 0.05f * Vector3.one, 0.2f);
+                closetUp.transform.position = Vector3.Lerp(closetUp.transform.position, new Vector3(arrowX, arrowUpY, 0), massEase);
+                closetUp.transform.localScale = Vector3.Lerp(closetUp.transform.localScale, arrowScale, massEase);
 
-                closetDown.transform.position = Vector3.Lerp(closetDown.transform.position, new Vector3(3.39f, -2.06f, 0), 0.2f);
-                closetDown.transform.localScale = Vector3.Lerp(closetDown.transform.localScale, 0.05f * Vector3.one, 0.2f);
+                closetDown.transform.position = Vector3.Lerp(closetDown.transform.position, new Vector3(arrowX, arrowDownY, 0), massEase);
+                closetDown.transform.localScale = Vector3.Lerp(closetDown.transform.localScale, arrowScale, massEase);
 
                 // enable the closet icon's circle colider
                 closetIcon.GetComponent<CircleCollider2D>().enabled = true;
@@ -149,27 +195,27 @@ public class ItemManager : MonoBehaviour
         {
             // closet icon moves back behind the shop icon
             Vector3 targetVector = new Vector3(transform.position.x + 0.1f, transform.position.y, 0);
-            closetIcon.transform.position = Vector3.Lerp(closetIcon.transform.position, targetVector, 0.1f);
-            closetWindow.transform.position = Vector3.Lerp(closetWindow.transform.position, targetVector, 0.1f);
+            closetIcon.transform.position = Vector3.Lerp(closetIcon.transform.position, targetVector, iconEase);
+            closetWindow.transform.position = Vector3.Lerp(closetWindow.transform.position, targetVector, iconEase);
 
             // store window closes
-            storeWindow.transform.localScale = Vector3.Lerp(storeWindow.transform.localScale, Vector3.zero, 0.1f);
+            storeWindow.transform.localScale = Vector3.Lerp(storeWindow.transform.localScale, Vector3.zero, iconEase);
 
             // closet window closes
-            closetWindow.transform.localScale = Vector3.Lerp(closetWindow.transform.localScale, Vector3.zero, 0.1f);
+            closetWindow.transform.localScale = Vector3.Lerp(closetWindow.transform.localScale, Vector3.zero, iconEase);
 
             // arrows close and resize
-            storeUp.transform.position = Vector3.Lerp(storeUp.transform.position, transform.position, 0.2f);
-            storeUp.transform.localScale = Vector3.Lerp(storeUp.transform.localScale, Vector3.zero, 0.2f);
+            storeUp.transform.position = Vector3.Lerp(storeUp.transform.position, transform.position, massEase);
+            storeUp.transform.localScale = Vector3.Lerp(storeUp.transform.localScale, Vector3.zero, massEase);
 
-            storeDown.transform.position = Vector3.Lerp(storeDown.transform.position, transform.position, 0.2f);
-            storeDown.transform.localScale = Vector3.Lerp(storeDown.transform.localScale, Vector3.zero, 0.2f);
+            storeDown.transform.position = Vector3.Lerp(storeDown.transform.position, transform.position, massEase);
+            storeDown.transform.localScale = Vector3.Lerp(storeDown.transform.localScale, Vector3.zero, massEase);
 
-            closetUp.transform.position = Vector3.Lerp(closetUp.transform.position, transform.position, 0.2f);
-            closetUp.transform.localScale = Vector3.Lerp(closetUp.transform.localScale, Vector3.zero, 0.2f);
+            closetUp.transform.position = Vector3.Lerp(closetUp.transform.position, transform.position, massEase);
+            closetUp.transform.localScale = Vector3.Lerp(closetUp.transform.localScale, Vector3.zero, massEase);
 
-            closetDown.transform.position = Vector3.Lerp(closetDown.transform.position, transform.position, 0.2f);
-            closetDown.transform.localScale = Vector3.Lerp(closetDown.transform.localScale, Vector3.zero, 0.2f);
+            closetDown.transform.position = Vector3.Lerp(closetDown.transform.position, transform.position, massEase);
+            closetDown.transform.localScale = Vector3.Lerp(closetDown.transform.localScale, Vector3.zero, massEase);
 
             // disable the closet icon's circle colider
             closetIcon.GetComponent<CircleCollider2D>().enabled = false;
@@ -185,7 +231,7 @@ public class ItemManager : MonoBehaviour
             // divides all items into store or closet lists
             storeItems.Clear();
             closetItems.Clear();
-            foreach (ItemBehavoir item in GameObject.FindObjectsOfType<ItemBehavoir>())
+            foreach (ItemBehavoir item in itemScriptList)
             {
                 if (item.location == ItemBehavoir.foundIn.store)
                 {
@@ -201,14 +247,14 @@ public class ItemManager : MonoBehaviour
             int i = 0;
             foreach (GameObject item in storeItems)
             {
-                // 2 is the distance between any two items, the (i%3) divides them into 3 columns, 
-                // the i/3 makes it move to a new row after every 3 items, that is added to the initial anchor spot
-                Vector3 targetVector = shopAnchorSpot + new Vector3(2 * (i % 3), -2 * (i / 3), 0);
+                // itemSpacing is the distance between any two items, the (i%itemsInRow) divides them into 3 columns, 
+                // the i/itemsInRow makes it move to a new row after every itemsInRow items, that is added to the initial anchor spot
+                Vector3 targetVector = shopAnchorSpot + new Vector3(itemSpacing * (i % itemsInRow), -itemSpacing * (i / itemsInRow), 0);
 
                 if (transform.position != targetVector) // if the item is not where it is supposed to be
                 {
-                    item.transform.position = Vector3.Lerp(item.transform.position, targetVector, 0.4f);
-                    item.transform.localScale = Vector3.Lerp(item.transform.localScale, Vector3.one, 0.1f);
+                    item.transform.position = Vector3.Lerp(item.transform.position, targetVector, storeItemEase);
+                    item.transform.localScale = Vector3.Lerp(item.transform.localScale, Vector3.one, itemScaleEase);
                 }
                 i++;
             }
@@ -218,12 +264,12 @@ public class ItemManager : MonoBehaviour
             foreach (GameObject item in closetItems)
             {
                 // same as the store organization
-                Vector3 targetVector = closetAnchorSpot + new Vector3(2 * (j % 3), -2 * (j / 3), 0);
+                Vector3 targetVector = closetAnchorSpot + new Vector3(itemSpacing * (j % itemsInRow), -itemSpacing * (j / itemsInRow), 0);
 
                 if (transform.position != targetVector) // if the item is not where it is supposed to be
                 {
-                    item.transform.position = Vector3.Lerp(item.transform.position, targetVector, 0.1f); // the closet lerps slower to draw attention to it
-                    item.transform.localScale = Vector3.Lerp(item.transform.localScale, Vector3.one, 0.1f);
+                    item.transform.position = Vector3.Lerp(item.transform.position, targetVector, closetItemEase); // the closet lerps slower to draw attention to it
+                    item.transform.localScale = Vector3.Lerp(item.transform.localScale, Vector3.one, itemScaleEase);
                 }
                 j++;
             }
@@ -232,50 +278,50 @@ public class ItemManager : MonoBehaviour
         else // if the inventory is closed to items
         {
             // send all the items back to the shop icon location
-            foreach (ItemBehavoir item in GameObject.FindObjectsOfType<ItemBehavoir>())
+            foreach (ItemBehavoir item in itemScriptList)
             {
-                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, 0.1f);
-                item.transform.localScale = Vector3.Lerp(item.transform.localScale, Vector3.zero, 0.1f);
+                item.transform.position = Vector3.Lerp(item.transform.position, transform.position, itemRecallEase);
+                item.transform.localScale = Vector3.Lerp(item.transform.localScale, Vector3.zero, itemScaleEase);
             }
         }
 
         // update anchor spots
-        shopAnchorSpot = new Vector3(shopAnchor.transform.position.x + 1.36f, shopAnchor.transform.position.y - 1.1f, 0);
-        closetAnchorSpot = new Vector3(closetAnchor.transform.position.x - 5.36f, closetAnchor.transform.position.y - 1.1f, 0);
+        shopAnchorSpot = new Vector3(shopAnchor.transform.position.x + shopAnchorOffSetX, shopAnchor.transform.position.y + anchorOffSetY, 0);
+        closetAnchorSpot = new Vector3(closetAnchor.transform.position.x + closetAnchorOffSetX, closetAnchor.transform.position.y + anchorOffSetY, 0);
 
         // store up button
-        if ( storeIsUp && (shopAnchor.transform.position.y > 5) )
+        if ( storeIsUp && (shopAnchor.transform.position.y > arrowCeiling) )
         {
             // moves the shop anchor upwards, scrolling the shop menu
-            shopAnchor.transform.position = shopAnchor.transform.position + new Vector3(0, -2, 0);
+            shopAnchor.transform.position = shopAnchor.transform.position + new Vector3(0, -itemSpacing, 0);
             AudioManager.instance.scroll.Play();
         }
         // store down button
-        if (storeIsDown && (shopAnchor.transform.position.y < 13))
+        if (storeIsDown && (shopAnchor.transform.position.y < arrowFloor))
         {
             // moves the shop anchor downwards, scrolling the shop menu
-            shopAnchor.transform.position = shopAnchor.transform.position + new Vector3(0, 2, 0);
+            shopAnchor.transform.position = shopAnchor.transform.position + new Vector3(0, itemSpacing, 0);
             AudioManager.instance.scroll.Play();
         }
         // closet up button
-        if (closetIsUp && (closetAnchor.transform.position.y > 5))
+        if (closetIsUp && (closetAnchor.transform.position.y > arrowCeiling))
         {
             // moves the closet anchor upwards, scrolling the closet menu
-            closetAnchor.transform.position = closetAnchor.transform.position + new Vector3(0, -2, 0);
+            closetAnchor.transform.position = closetAnchor.transform.position + new Vector3(0, -itemSpacing, 0);
             AudioManager.instance.scroll.Play();
         }
         // closet down button
-        if (closetIsDown && (closetAnchor.transform.position.y < 13))
+        if (closetIsDown && (closetAnchor.transform.position.y < arrowFloor))
         {
             // moves the closet anchor downwards, scrolling the closet menu
-            closetAnchor.transform.position = closetAnchor.transform.position + new Vector3(0, 2, 0);
+            closetAnchor.transform.position = closetAnchor.transform.position + new Vector3(0, itemSpacing, 0);
             AudioManager.instance.scroll.Play();
         }
 
         // disable the arrows when at the top or bottom
-        storeUp.GetComponent<SpriteRenderer>().enabled = shopAnchor.transform.position.y < 5 ? false : true;
+        storeUp.GetComponent<SpriteRenderer>().enabled = shopAnchor.transform.position.y < arrowCeiling ? false : true;
         storeDown.GetComponent<SpriteRenderer>().enabled = tooLow(shopAnchor, storeItems) ? false : true;
-        closetUp.GetComponent<SpriteRenderer>().enabled = closetAnchor.transform.position.y < 5 ? false : true;
+        closetUp.GetComponent<SpriteRenderer>().enabled = closetAnchor.transform.position.y < arrowCeiling ? false : true;
         closetDown.GetComponent<SpriteRenderer>().enabled = tooLow(closetAnchor, closetItems) ? false : true;
         
 
@@ -314,7 +360,7 @@ public class ItemManager : MonoBehaviour
     // When used above, it disables interaction with the scrolling arrows when at the bottom of each menu
     private bool tooLow(GameObject anchor, List<GameObject> contents)
     {
-        if ( anchor.transform.position.y > 13 - 2 * ( ((AllItemList.Length+2) / 3) - ((contents.Count+2) / 3) ) )
+        if ( anchor.transform.position.y > arrowFloor - itemSpacing * ( ((AllItemList.Length + (itemsInRow - 1)) / itemsInRow) - ((contents.Count + (itemsInRow - 1)) / itemsInRow) ) )
         {
             return true;
         }
