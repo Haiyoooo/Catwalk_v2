@@ -7,8 +7,8 @@ public class EventManager : MonoBehaviour
     public static EventManager instance = null;
     private GameObject[] spawnpoints;
     [SerializeField] private GameObject eventPrefab;
-    private int totalJobs = 0;
-    private int totalParties = 0;
+    [HideInInspector] public int totalJobs = 0;
+    [HideInInspector] public int totalParties = 0;
     [SerializeField] private int maxJobs = 0;
     [SerializeField] private int maxParties = 5;
     int rng; //random number
@@ -90,7 +90,5 @@ public class EventManager : MonoBehaviour
         {
             totalParties--;
         }
-
-        Destroy(gameObject);
     }
 }

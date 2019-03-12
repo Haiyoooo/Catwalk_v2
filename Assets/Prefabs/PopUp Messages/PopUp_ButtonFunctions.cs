@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class PopUp_ButtonFunctions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Transform thisEvent;
+    private EventBehavior thisEventBehavior;
+
+    private void Start()
     {
-        
+        thisEvent = transform.parent.parent;
+        thisEventBehavior = thisEvent.GetComponent<EventBehavior>();
     }
 
-    //Button function to close pop-up window
-    public void closePopUp()
+    public void _closePopUp()
     {
-        Destroy(transform.parent.gameObject); //hide the pop up message
+        ////call the function in event Manager
+        //EventManager.instance.destroyEvent(thisEventBehavior.isJob);
+
+        //update count
+        if (thisEventBehavior.isJob == false)
+        {
+            EventManager.instance.totalJobs--;
+        }
+        else
+        {
+            EventManager.instance.totalParties--;
+        }
+
+        //Destroy the event prefab
+        //and hence pop-up message because that's a child of event Prefab.
+        Destroy(thisEvent.gameObject);
     }
 }
